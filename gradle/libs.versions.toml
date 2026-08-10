@@ -15,11 +15,15 @@ mockk = "1.13.12"
 kotlinxCoroutines = "1.11.0"
 turbine = "1.2.1"
 googleTruth = "1.4.5"
+room = "2.8.4"
 koin = "4.2.2"
 koin-plugin = "1.1.0"
 ksp = "2.3.10"
 
 [libraries]
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koin" }

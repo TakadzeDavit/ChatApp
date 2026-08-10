@@ -22,5 +22,8 @@ dependencyResolutionManagement {
     }
 }
 
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 rootProject.name = "ChatApp"
 include(":app")
+include(":core:ui")

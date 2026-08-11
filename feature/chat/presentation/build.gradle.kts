@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.chatapp.android.feature.presentation)
 }
 
 android {

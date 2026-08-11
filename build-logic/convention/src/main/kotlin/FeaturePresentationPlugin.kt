@@ -17,11 +17,11 @@ class FeaturePresentationPlugin : Plugin<Project> {
             pluginManager.apply("chatapp.android.koin")
 
             dependencies {
-                implementationModule(CORE_DOMAIN_MODULE)
+              //  implementationModule(CORE_DOMAIN_MODULE)
                 implementationModule(CORE_UI_MODULE)
-                implementationModule(CORE_NAVIGATION_MODULE)
-                implementationModule(CORE_PRESENTATION_MODULE)
-                implementationLibrary(":feature:${featureName()}:domain")
+              //  implementationModule(CORE_NAVIGATION_MODULE)
+              //  implementationModule(CORE_PRESENTATION_MODULE)
+              //  implementationLibrary(":feature:${featureName()}:domain")
                 implementationLibrary("androidx-lifecycle-viewmodel-ktx")
                 implementationLibrary("androidx-lifecycle-viewmodel-compose")
                 implementationLibrary("coil")

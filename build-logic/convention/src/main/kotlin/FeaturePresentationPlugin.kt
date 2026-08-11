@@ -6,6 +6,7 @@ import com.space.chatapp.extensions.featureName
 import com.space.chatapp.extensions.implementationBundle
 import com.space.chatapp.extensions.implementationLibrary
 import com.space.chatapp.extensions.implementationModule
+import com.space.chatapp.extensions.testImplementationBundle
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
@@ -22,7 +23,7 @@ class FeaturePresentationPlugin : Plugin<Project> {
                 implementationModule(CORE_UI_MODULE)
                 implementationModule(CORE_NAVIGATION_MODULE)
                 implementationModule(CORE_PRESENTATION_MODULE)
-                implementationBundle("test")
+                testImplementationBundle("test")
                 implementationBundle("koin")
                 implementationLibrary(":feature:${featureName()}:domain")
                 implementationLibrary("androidx-lifecycle-viewmodel-ktx")

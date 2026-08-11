@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.chatapp.android.application)
     alias(libs.plugins.chatapp.android.compose)
-    alias(libs.plugins.chatapp.android.test)
 }
 
 android {
@@ -22,6 +21,5 @@ android {
 
 dependencies {
     implementation(libs.kotlinx.serialization.json)
-    implementation(libs.bundles.test)
-    implementation(projects.core.ui)
+    testImplementation(libs.bundles.test)
 }

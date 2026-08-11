@@ -1,3 +1,4 @@
+import com.space.chatapp.extensions.implementationBundle
 import com.space.chatapp.extensions.implementationLibrary
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -9,10 +10,7 @@ class AndroidKoinConventionPlugin : Plugin<Project> {
             pluginManager.apply("io.insert-koin.compiler.plugin")
 
             dependencies {
-                implementationLibrary("koin-core")
-                implementationLibrary("koin-android")
-                implementationLibrary("koin-androidx-compose")
-                implementationLibrary("koin-annotations")
+                implementationBundle("koin")
             }
         }
     }

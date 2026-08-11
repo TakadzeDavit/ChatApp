@@ -42,3 +42,7 @@ internal fun Project.testImplementationLibrary(alias: String) {
 internal fun Project.debugImplementationLibrary(alias: String) {
     dependencies.add(DEBUG_IMPLEMENTATION, libs.findLibrary(alias).get())
 }
+
+internal fun Project.implementationBundle(alias: String) {
+    dependencies.add(IMPLEMENTATION, libs.findBundle(alias).get())
+}

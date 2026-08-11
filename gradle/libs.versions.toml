@@ -85,3 +85,9 @@ room = [
     "room-ktx",
     "room-compiler"
 ]
+koin = [
+    "koin-core",
+    "koin-android",
+    "koin-androidx-compose",
+    "koin-annotations"
+]

@@ -26,9 +26,9 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 rootProject.name = "ChatApp"
 
-includeAllModules("core", "feature")
+includeAllModules("core")
 
-include(":app")
+include(":app","feature")
 fun includeAllModules(vararg groupDirs: String) {
     val rootDir = settings.rootDir
     groupDirs.forEach { group ->
@@ -40,4 +40,5 @@ fun includeAllModules(vararg groupDirs: String) {
             }
     }
 }
-
+include(":feature:authentication:presentation")
+include(":feature:chat:presentation")

@@ -31,10 +31,6 @@ gradlePlugin {
             id = "chatapp.android.compose"
             implementationClass = "AndroidComposeConventionPlugin"
         }
-        register("androidTest") {
-            id = "chatapp.android.test"
-            implementationClass = "AndroidTestConventionPlugin"
-        }
         register("featurePresentation") {
             id = "chatapp.android.feature.presentation"
             implementationClass = "FeaturePresentationPlugin"

@@ -22,5 +22,6 @@ android {
 
 dependencies {
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.bundles.test)
     implementation(projects.core.ui)
 }

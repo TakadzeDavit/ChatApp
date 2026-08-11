@@ -35,14 +35,14 @@ internal fun Project.implementationLibrary(alias: String) {
     dependencies.add(IMPLEMENTATION, libs.findLibrary(alias).get())
 }
 
-internal fun Project.testImplementationLibrary(alias: String) {
-    dependencies.add(TEST_IMPLEMENTATION, libs.findLibrary(alias).get())
-}
-
 internal fun Project.debugImplementationLibrary(alias: String) {
     dependencies.add(DEBUG_IMPLEMENTATION, libs.findLibrary(alias).get())
 }
 
 internal fun Project.implementationBundle(alias: String) {
     dependencies.add(IMPLEMENTATION, libs.findBundle(alias).get())
+}
+
+internal fun Project.testImplementationBundle(alias: String) {
+    dependencies.add(TEST_IMPLEMENTATION, libs.findBundle(alias).get())
 }

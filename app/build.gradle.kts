@@ -21,5 +21,5 @@ android {
 
 dependencies {
     implementation(libs.kotlinx.serialization.json)
-    implementation(libs.bundles.test)
+    testImplementation(libs.bundles.test)
 }

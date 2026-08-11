@@ -91,3 +91,10 @@ koin = [
     "koin-androidx-compose",
     "koin-annotations"
 ]
+test = [
+    "junit",
+    "google-truth",
+    "mockk",
+    "kotlinx-coroutines-test",
+    "turbine"
+]

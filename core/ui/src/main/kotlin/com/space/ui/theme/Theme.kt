@@ -56,22 +56,8 @@ val DarkChatColors = ChatAppColors(
 )
 
 
-val LocalChatAppColors = staticCompositionLocalOf {
-    ChatAppColors(
-        chatBubbleReceipt = Color.Unspecified,
-        chatBubbleSender = Color.Unspecified,
-        textInputBorder = Color.Unspecified,
-        divider = Color.Unspecified,
-        surface = Color.Unspecified,
-        transparent = Color.Unspecified,
-        buttonBorder = Color.Unspecified,
-        inputTextField = Color.Unspecified,
-        background = Color.Unspecified,
-        onSurface = Color.Unspecified,
-        onTransparent = Color.Unspecified,
-        textPrimary = Color.Unspecified,
-        textSecondary = Color.Unspecified
-    )
+val LocalChatAppColors = staticCompositionLocalOf<ChatAppColors> {
+    error("No chat app colors provided")
 }
 
 object ChatAppTheme {

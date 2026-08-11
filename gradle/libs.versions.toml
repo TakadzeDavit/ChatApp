@@ -78,3 +78,8 @@ coil = [
     "coil-svg",
     "coil-compose"
 ]
+room = [
+    "room-runtime",
+    "room-ktx",
+    "room-compiler"
+]

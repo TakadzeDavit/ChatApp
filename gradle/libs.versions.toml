@@ -67,8 +67,10 @@ chatapp-android-application = { id = "chatapp.android.application", version = "u
 chatapp-android-compose = { id = "chatapp.android.compose", version = "unspecified" }
 chatapp-android-test = { id = "chatapp.android.test", version = "unspecified" }
 chatapp-android-library = { id = "chatapp.android.library", version = "unspecified" }
-movie-android-koin = { id = "movieapp.android.koin", version = "unspecified" }
+chatapp-android-koin = { id = "chatapp.android.koin", version = "unspecified" }
 chatapp-feature-domain = { id = "chatapp.feature.domain", version = "unspecified" }
+chatapp-android-feature-data = { id = "chatapp.android.feature.data", version = "unspecified" }
+chatapp-android-feature-presentation = { id = "chatapp.android.feature.presentation", version = "unspecified" }
 koin-compiler = { id = "io.insert-koin.compiler.plugin", version.ref = "koin-plugin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 

@@ -1,5 +1,4 @@
 import com.space.chatapp.extensions.implementationBundle
-import com.space.chatapp.extensions.implementationLibrary
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies

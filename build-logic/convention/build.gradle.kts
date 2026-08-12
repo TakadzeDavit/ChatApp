@@ -43,9 +43,9 @@ gradlePlugin {
             id = "chatapp.feature.domain"
             implementationClass = "FeatureDomainPlugin"
         }
-        register("androidKoin") {
-            id = "chatapp.android.koin"
-            implementationClass = "AndroidKoinConventionPlugin"
+        register("jvmLibrary") {
+            id = "chatapp.jvm.library"
+            implementationClass = "JvmLibraryConventionPlugin"
         }
     }
 }

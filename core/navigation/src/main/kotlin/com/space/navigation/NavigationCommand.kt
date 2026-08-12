@@ -22,5 +22,5 @@ interface NavigationCommand {
 
 data class NavCommandBundle(
     val flowNavigationCommand: NavigationCommand? = null,
-    val globalNavigationCommand: NavigationCommand? = null
+    val featureNavigationCommand: NavigationCommand? = null
 )

@@ -3,5 +3,8 @@ plugins {
 }
 
 android {
-    namespace = "com.space.authentication.presentation"
+    namespace = "com.space.chat.presentation"
+}
+dependencies {
+    implementation(projects.feature.chat.api)
 }

@@ -41,3 +41,5 @@ fun includeAllModules(vararg groupDirs: String) {
     }
 }
 include(":core:domain")
+
+include(":core:navigation")

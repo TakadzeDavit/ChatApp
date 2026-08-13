@@ -17,18 +17,20 @@ class FeaturePresentationPlugin : Plugin<Project> {
             pluginManager.apply("chatapp.android.library")
             pluginManager.apply("chatapp.android.compose")
             pluginManager.apply("io.insert-koin.compiler.plugin")
+            pluginManager.apply("org.jetbrains.kotlin.plugin.serialization")
 
             dependencies {
-              //  implementationModule(CORE_DOMAIN_MODULE)
+                //  implementationModule(CORE_DOMAIN_MODULE)
                 implementationModule(CORE_UI_MODULE)
-              //  implementationModule(CORE_NAVIGATION_MODULE)
-              //  implementationModule(CORE_PRESENTATION_MODULE)
+                implementationModule(CORE_NAVIGATION_MODULE)
+                implementationModule(CORE_PRESENTATION_MODULE)
                 testImplementationBundle("test")
                 implementationBundle("koin")
-              //  implementationLibrary(":feature:${featureName()}:domain")
+                //  implementationLibrary(":feature:${featureName()}:domain")
                 implementationLibrary("androidx-lifecycle-viewmodel-ktx")
                 implementationLibrary("androidx-lifecycle-viewmodel-compose")
                 implementationLibrary("coil")
+                implementationLibrary("kotlinx-serialization-json")
             }
         }
     }

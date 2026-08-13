@@ -18,6 +18,12 @@ interface NavigationCommand {
             navigator.pop()
         }
     }
+
+    data class ReplaceLast(val key: NavKey) : NavigationCommand {
+        override fun execute(navigator: Navigator) {
+            navigator.replaceLast(key)
+        }
+    }
 }
 
 data class NavCommandBundle(

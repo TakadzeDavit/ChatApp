@@ -40,6 +40,7 @@ kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-cor
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 google-truth = { group = "com.google.truth", name = "truth", version.ref = "googleTruth" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+kotlin-serialization-gradlePlugin = { module = "org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin", version.ref = "kotlin" }
 androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
 androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
 androidx-lifecycle-viewmodel-navigation3 = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "lifecycleViewmodelNav3" }
@@ -81,6 +82,7 @@ chatapp-android-feature-data = { id = "chatapp.android.feature.data", version = 
 chatapp-android-feature-presentation = { id = "chatapp.android.feature.presentation", version = "unspecified" }
 koin-compiler = { id = "io.insert-koin.compiler.plugin", version.ref = "koin-plugin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 
 [bundles]
 coil = [

@@ -1,14 +1,14 @@
 plugins {
     alias(libs.plugins.chatapp.android.library)
     alias(libs.plugins.chatapp.android.compose)
-    alias(libs.plugins.koin.compiler)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
-    namespace = "com.space.core.presentation"
+    namespace = "com.space.feature.authentication.api"
 }
+
 dependencies {
-    implementation(libs.bundles.koin)
+    implementation(libs.kotlinx.serialization.json)
     implementation(projects.core.navigation)
-    implementation(projects.core.ui)
 }

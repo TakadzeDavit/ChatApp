@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.chatapp.android.application)
     alias(libs.plugins.chatapp.android.compose)
+    alias(libs.plugins.koin.compiler)
 }
 
 android {
@@ -21,6 +22,11 @@ android {
 
 dependencies {
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.androidx.core.splashscreen)
+    implementation(libs.bundles.koin)
     testImplementation(libs.bundles.test)
+
+    // modules
     implementation(projects.core.ui)
+    implementation(projects.core.data)
 }

@@ -11,7 +11,7 @@ composeBom = "2026.06.01"
 nav3Core = "1.1.5"
 lifecycleViewmodelNav3 = "2.11.0"
 kotlinxSerializationJson = "1.11.0"
-mockk = "1.13.12"
+mockk = "1.14.11"
 kotlinxCoroutines = "1.11.0"
 turbine = "1.2.1"
 googleTruth = "1.4.5"
@@ -25,6 +25,7 @@ appcompat = "1.7.1"
 material = "1.14.0"
 jetbrainsKotlinJvm = "2.4.10"
 datastorePreferences = "1.2.1"
+coreSplashscreen = "1.2.0"
 
 [libraries]
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
@@ -69,6 +70,7 @@ androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "j
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "coreSplashscreen" }
 
 [plugins]
 android-library = { id = "com.android.library", version.ref = "agp" }

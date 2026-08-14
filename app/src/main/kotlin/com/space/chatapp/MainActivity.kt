@@ -17,16 +17,9 @@ import com.space.ui.theme.ChatAppTheme.colors
 import kotlin.getValue
 
 class MainActivity : ComponentActivity() {
-    private val viewModel: MainActivityVm by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        val splashScreen = installSplashScreen()
+        installSplashScreen()
         super.onCreate(savedInstanceState)
-
-        splashScreen.setKeepOnScreenCondition {
-            viewModel.state.value.isLoading
-        }
-
         enableEdgeToEdge()
         setContent {
             ChatAppTheme {

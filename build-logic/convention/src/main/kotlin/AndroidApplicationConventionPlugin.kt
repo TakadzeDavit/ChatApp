@@ -24,6 +24,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
 
                 buildFeatures {
                     compose = true
+                    buildConfig = true
                 }
 
                 compileOptions {

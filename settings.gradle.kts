@@ -40,5 +40,5 @@ fun includeAllModules(vararg groupDirs: String) {
             }
     }
 }
-include(":core:presentation")
-include(":core:navigation")
+include(":core:domain")
+include(":feature:chat:api")

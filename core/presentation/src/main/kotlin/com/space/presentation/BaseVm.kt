@@ -1,6 +1,9 @@
 package com.space.presentation
 
 import androidx.lifecycle.ViewModel
+import com.space.navigation.FeatureNavigationHelper
+import com.space.navigation.FlowNavigationHelper
+import com.space.navigation.NavCommandBundle
 import com.space.navigation.NavigationCommand
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,7 +21,7 @@ abstract class BaseVM<State : UiState, Event : UiEvent>(
     val state: StateFlow<State> = _state.asStateFlow()
 
 
-    internal val navigationCommands = MutableSharedFlow<NavigationCommand>(
+    internal val navigationCommands = MutableSharedFlow<NavCommandBundle>(
         extraBufferCapacity = 64
     )
 
@@ -28,5 +31,21 @@ abstract class BaseVM<State : UiState, Event : UiEvent>(
         _state.update { currentState ->
             currentState.update()
         }
+    }
+
+    protected fun globalNavigator(navigation: FeatureNavigationHelper.() -> NavigationCommand) {
+        navigationCommands.tryEmit(
+            NavCommandBundle(
+                featureNavigationCommand = navigation.invoke(FeatureNavigationHelper)
+            )
+        )
+    }
+
+    protected fun flowNavigator(navigation: FlowNavigationHelper.() -> NavigationCommand) {
+        navigationCommands.tryEmit(
+            NavCommandBundle(
+                flowNavigationCommand = navigation.invoke(FlowNavigationHelper)
+            )
+        )
     }
 }

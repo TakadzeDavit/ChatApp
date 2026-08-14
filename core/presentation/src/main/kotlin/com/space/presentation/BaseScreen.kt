@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.koin.compose.scope.KoinScope
-import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
 import org.koin.core.parameter.ParametersDefinition
 import org.koin.core.qualifier.Qualifier
@@ -25,7 +24,7 @@ fun <UIState : UiState, UIEvent : UiEvent> BaseScreen(
             parameters = parameters
         )
         val state by viewModel.state.collectAsStateWithLifecycle()
-        //NavCommands(viewModel.navigationCommands)
+        NavCommands(viewModel.navigationCommands)
         content(state, viewModel::onEvent)
     }
 }

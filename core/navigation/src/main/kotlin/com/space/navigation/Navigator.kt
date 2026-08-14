@@ -8,19 +8,14 @@ import androidx.navigation3.runtime.rememberNavBackStack
 
 class Navigator(val backStack: NavBackStack<NavKey>) {
     fun push(key: NavKey) {
-        val index = backStack.indexOf(key)
-        if (index != -1) {
-            backStack.removeAt(index)
-        }
-        backStack.add(key)
+        if (backStack.contains(key)) {
+            val first = backStack.removeAt(0)
+            backStack.add(first)
+        } else backStack.add(key)
     }
 
     fun pop() {
         if (backStack.size > 1) backStack.removeLastOrNull()
-    }
-
-    fun replaceLast(key: NavKey) {
-        backStack[backStack.lastIndex] = key
     }
 }
 

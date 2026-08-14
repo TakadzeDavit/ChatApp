@@ -3,9 +3,6 @@ package com.space.presentation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
-import com.space.navigation.NavCommandBundle
-import com.space.navigation.globalNavigator
-import com.space.navigation.localNavigator
 import kotlinx.coroutines.flow.MutableSharedFlow
 import org.koin.compose.currentKoinScope
 import org.koin.core.annotation.KoinInternalApi
@@ -32,22 +29,3 @@ internal fun <UIState : UiState, UIEvent : UiEvent> koinViewModel(
     )
 }
 
-@Composable
-internal fun NavCommands(navigationCommands: MutableSharedFlow<NavCommandBundle>) {
-    val localNavigator = localNavigator()
-    val globalNavigator = globalNavigator()
-
-    LaunchedEffect(Unit) {
-        navigationCommands.collect {
-            when {
-                it.flowNavigationCommand != null -> it.flowNavigationCommand!!.execute(
-                    localNavigator!!
-                )
-
-                it.featureNavigationCommand != null -> it.featureNavigationCommand!!.execute(
-                    globalNavigator!!
-                )
-            }
-        }
-    }
-}

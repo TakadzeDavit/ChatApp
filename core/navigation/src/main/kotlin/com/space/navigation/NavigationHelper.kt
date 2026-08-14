@@ -12,6 +12,4 @@ interface NavigationHelper<key : NavKey> {
     ) = NavigationCommand.Push(key)
 
     fun pop() = NavigationCommand.Pop
-
-    fun replaceLast(key: NavKey) = NavigationCommand.ReplaceLast(key)
 }

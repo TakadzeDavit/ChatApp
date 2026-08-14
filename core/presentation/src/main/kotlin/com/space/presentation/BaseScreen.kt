@@ -25,7 +25,7 @@ fun <UIState : UiState, UIEvent : UiEvent> BaseScreen(
             parameters = parameters
         )
         val state by viewModel.state.collectAsStateWithLifecycle()
-        NavCommands(viewModel.navigationCommands)
+        //NavCommands(viewModel.navigationCommands)
         content(state, viewModel::onEvent)
     }
 }

@@ -10,5 +10,4 @@ android {
 dependencies {
     implementation(libs.bundles.koin)
     implementation(projects.core.navigation)
-    implementation(projects.core.ui)
 }

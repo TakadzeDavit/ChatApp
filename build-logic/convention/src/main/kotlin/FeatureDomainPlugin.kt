@@ -9,7 +9,7 @@ import org.gradle.kotlin.dsl.dependencies
 class FeatureDomainPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            pluginManager.apply("org.jetbrains.kotlin.jvm")
+            pluginManager.apply("chatapp.jvm.library")
 
             dependencies {
                 implementationModule(CORE_DOMAIN_MODULE)

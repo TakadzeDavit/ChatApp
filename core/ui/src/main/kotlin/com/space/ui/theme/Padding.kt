@@ -12,6 +12,4 @@ object Padding {
     val toggleRightPadding = Dimensions.dimension12
     val toggleBottomPadding = Dimensions.dimension16
     val toggleTopPadding = Dimensions.dimension08
-    val dialogPadding = Dimensions.dimension24
-    val dialogContentPadding = Dimensions.dimension20
 }

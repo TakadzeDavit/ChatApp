@@ -7,15 +7,14 @@ plugins {
 group = "com.space.chatapp.buildlogic"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 dependencies {
     compileOnly(libs.android.gradlePlugin)
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.compose.compiler.gradlePlugin)
-    implementation(libs.kotlin.serialization.gradlePlugin)
 }
 
 gradlePlugin {

@@ -7,8 +7,8 @@ plugins {
 group = "com.space.chatapp.buildlogic"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 dependencies {
@@ -43,9 +43,9 @@ gradlePlugin {
             id = "chatapp.feature.domain"
             implementationClass = "FeatureDomainPlugin"
         }
-        register("androidKoin") {
-            id = "chatapp.android.koin"
-            implementationClass = "AndroidKoinConventionPlugin"
+        register("jvmLibrary") {
+            id = "chatapp.jvm.library"
+            implementationClass = "JvmLibraryConventionPlugin"
         }
     }
 }

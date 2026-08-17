@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chat">ჩატი</string>
+    <string name="log_in">შესვლა</string>
+    <string name="registration">რეგისტრაცია</string>
+</resources>

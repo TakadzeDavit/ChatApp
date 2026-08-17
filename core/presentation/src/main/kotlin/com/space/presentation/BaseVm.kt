@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.update
 interface UiEvent
 interface UiState
 
-abstract class BaseVM<State : UiState, Event : UiEvent>(
+abstract class BaseVm<State : UiState, Event : UiEvent>(
     initialState: State
 ) : ViewModel() {
     private val _state = MutableStateFlow(initialState)

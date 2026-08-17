@@ -42,3 +42,4 @@ fun includeAllModules(vararg groupDirs: String) {
 }
 include(":core:domain")
 include(":feature:chat:api")
+include(":feature:authentication:domain")

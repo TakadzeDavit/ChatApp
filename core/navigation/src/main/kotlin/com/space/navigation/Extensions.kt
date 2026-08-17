@@ -21,5 +21,5 @@ fun requireLocalNavigator(): Navigator {
 
 @Composable
 fun requireGlobalNavigator(): Navigator {
-    return globalNavigator() ?: throw IllegalStateException("Local navigator is not available")
+    return globalNavigator() ?: throw IllegalStateException("Global navigator is not available")
 }

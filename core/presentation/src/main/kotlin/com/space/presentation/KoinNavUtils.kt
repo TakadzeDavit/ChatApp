@@ -6,6 +6,8 @@ import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import com.space.navigation.NavCommandBundle
 import com.space.navigation.globalNavigator
 import com.space.navigation.localNavigator
+import com.space.navigation.requireGlobalNavigator
+import com.space.navigation.requireLocalNavigator
 import kotlinx.coroutines.flow.MutableSharedFlow
 import org.koin.compose.currentKoinScope
 import org.koin.core.annotation.KoinInternalApi
@@ -34,18 +36,18 @@ internal fun <UIState : UiState, UIEvent : UiEvent> koinViewModel(
 
 @Composable
 internal fun NavCommands(navigationCommands: MutableSharedFlow<NavCommandBundle>) {
-    val localNavigator = localNavigator()
-    val globalNavigator = globalNavigator()
+    val localNavigator = requireLocalNavigator()
+    val globalNavigator = requireGlobalNavigator()
 
     LaunchedEffect(Unit) {
         navigationCommands.collect {
             when {
                 it.flowNavigationCommand != null -> it.flowNavigationCommand!!.execute(
-                    localNavigator!!
+                    localNavigator
                 )
 
                 it.featureNavigationCommand != null -> it.featureNavigationCommand!!.execute(
-                    globalNavigator!!
+                    globalNavigator
                 )
             }
         }

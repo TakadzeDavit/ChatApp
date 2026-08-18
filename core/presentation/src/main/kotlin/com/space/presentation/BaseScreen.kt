@@ -3,10 +3,8 @@ package com.space.presentation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import org.koin.core.annotation.KoinExperimentalAPI
 import org.koin.core.parameter.ParametersDefinition
 
-@OptIn(KoinExperimentalAPI::class)
 @Composable
 fun <UIState : UiState, UIEvent : UiEvent> BaseScreen(
     vmClass: VmClass<UIState, UIEvent>,

@@ -3,4 +3,10 @@
     <string name="chat">ჩატი</string>
     <string name="log_in">შესვლა</string>
     <string name="registration">რეგისტრაცია</string>
+    <string name="name">სახელი</string>
+    <string name="create_new">შექმენი ახალი ანგარიში</string>
+    <string name="email">ელფოსტა</string>
+    <string name="password">პაროლი</string>
+    <string name="repeat_password">პაროლის გამეორება</string>
+    <string name="next">გაგრძელება</string>
 </resources>

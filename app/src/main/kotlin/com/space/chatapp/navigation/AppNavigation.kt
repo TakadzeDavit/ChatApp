@@ -10,9 +10,6 @@ import androidx.navigation3.ui.NavDisplay
 import com.space.chatapp.MainActivity
 import com.space.feature.authentication.presentation.navigator.authFeatureEntry
 import com.space.navigation.LocalGlobalNavigator
-import com.space.navigation.featurePopTransitionSpec
-import com.space.navigation.featurePredictivePopTransitionSpec
-import com.space.navigation.featureTransitionSpec
 import com.space.navigation.rememberNavigator
 
 @Composable
@@ -33,9 +30,6 @@ fun MainActivity.MovieAppContainer(
             onBack = {
                 if (navigator.backStack.size > 1) navigator.pop() else finishAffinity()
             },
-            transitionSpec = featureTransitionSpec(),
-            popTransitionSpec = featurePopTransitionSpec(),
-            predictivePopTransitionSpec = featurePredictivePopTransitionSpec(),
             entryProvider = entryProvider {
                 authFeatureEntry()
             },

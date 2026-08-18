@@ -21,7 +21,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -29,17 +28,35 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.space.authentication.presentation.R
+import com.space.feature.authentication.presentation.auth.flow.routing.screen.contract.RoutingEvent
+import com.space.feature.authentication.presentation.auth.flow.routing.screen.contract.RoutingState
+import com.space.feature.authentication.presentation.auth.flow.routing.screen.vm.RoutingVm
+import com.space.presentation.BaseScreen
+import com.space.ui.component.button.ChatAppSwitch
 import com.space.ui.component.button.PrimaryButton
 import com.space.ui.component.button.SecondaryButton
 import com.space.ui.theme.ChatAppTheme
 import com.space.ui.theme.ChatAppTheme.colors
+import com.space.ui.theme.Sizing
+import com.space.ui.theme.Spacing
 
 @Composable
-fun RoutingScreen(
-    onLoginClick: () -> Unit = {},
-    onRegisterClick: () -> Unit = {},
-    isDarkTheme: Boolean = false,
-    onThemeToggle: (Boolean) -> Unit = {}
+fun RoutingScreen() {
+    BaseScreen(
+        vmClass = RoutingVm::class,
+        content = { state, onEvent ->
+            RoutingContent(
+                state = state,
+                onEvent = onEvent
+            )
+        }
+    )
+}
+
+@Composable
+fun RoutingContent(
+    state: RoutingState,
+    onEvent: (RoutingEvent) -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -47,27 +64,16 @@ fun RoutingScreen(
             .background(colors.background)
             .statusBarsPadding()
             .navigationBarsPadding()
-            .padding(horizontal = 24.dp)
+            .padding(horizontal = Spacing.spacing24)
     ) {
-        Switch(
-            checked = false,
-            onCheckedChange = onThemeToggle,
-            modifier = Modifier
-                .align(Alignment.TopEnd)
-                .padding(top = 16.dp),
-            thumbContent = {
-                Icon(
-                    painter = painterResource(id = com.space.chatapp.core.ui.R.drawable.icon_light),
-                    contentDescription = "Theme Toggle",
-                    modifier = Modifier.size(16.dp)
-                )
-            },
-            colors = SwitchDefaults.colors(
-                checkedThumbColor = Color.White,
-                checkedTrackColor = Color(0xFF7C67EE),
-                uncheckedThumbColor = Color.White,
-                uncheckedTrackColor = Color(0xFFDCD6FE)
-            )
+        ChatAppSwitch(
+            isDarkTheme = state.isDarkTheme,
+            modifier = Modifier.align(Alignment.TopEnd).padding(top = 16.dp),
+            activeSwitchIcon = com.space.chatapp.core.ui.R.drawable.icon_dark,
+            inActiveIcon = com.space.chatapp.core.ui.R.drawable.icon_light,
+            onCheckChange = { isChecked ->
+                onEvent(RoutingEvent.OnThemeToggle(isChecked))
+            }
         )
 
         Column(
@@ -77,9 +83,9 @@ fun RoutingScreen(
         ) {
             Box(
                 modifier = Modifier
-                    .size(120.dp)
+                    .size(Sizing.routingScreenChatIconSize)
                     .clip(CircleShape)
-                    .background(Color(0xFF7C67EE)),
+                    .background(color = colors.buttonBorder),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
@@ -90,7 +96,7 @@ fun RoutingScreen(
                 )
             }
 
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(Spacing.spacing24))
 
             Text(
                 text = stringResource(R.string.chat),
@@ -104,17 +110,19 @@ fun RoutingScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter)
-                .padding(bottom = 32.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+                .padding(bottom = Spacing.spacing28),
+            verticalArrangement = Arrangement.spacedBy(Spacing.spacing12)
         ) {
             PrimaryButton(
                 text = stringResource(R.string.log_in),
-                onClick = onLoginClick
+                onClick = {}
             )
 
             SecondaryButton(
                 text = stringResource(R.string.registration),
-                onClick = onRegisterClick
+                onClick = {
+                    onEvent(RoutingEvent.OnNavigateRegistration)
+                }
             )
         }
     }

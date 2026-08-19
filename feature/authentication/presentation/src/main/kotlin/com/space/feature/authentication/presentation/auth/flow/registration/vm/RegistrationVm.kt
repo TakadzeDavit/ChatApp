@@ -7,8 +7,6 @@ import com.space.feature.authentication.presentation.navigator.RegistrationScree
 import com.space.presentation.BaseVm
 
 class RegistrationVm : BaseVm<RegistrationState, RegistrationEvent>(RegistrationState()) {
-
-
     override fun onEvent(event: RegistrationEvent) {
         when (event) {
             is RegistrationEvent.OnThemeToggle -> updateState { copy(isDarkTheme = event.isChecked) }

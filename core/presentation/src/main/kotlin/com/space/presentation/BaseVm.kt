@@ -5,10 +5,11 @@ import com.space.navigation.FeatureNavigationHelper
 import com.space.navigation.FlowNavigationHelper
 import com.space.navigation.NavCommandBundle
 import com.space.navigation.NavigationCommand
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 
 interface UiEvent
@@ -21,9 +22,8 @@ abstract class BaseVm<State : UiState, Event : UiEvent>(
     val state: StateFlow<State> = _state.asStateFlow()
 
 
-    internal val navigationCommands = MutableSharedFlow<NavCommandBundle>(
-        extraBufferCapacity = 64
-    )
+    private val _navigationCommands = Channel<NavCommandBundle>(Channel.BUFFERED)
+    val navigationCommands = _navigationCommands.receiveAsFlow()
 
     abstract fun onEvent(event: Event)
 
@@ -34,7 +34,7 @@ abstract class BaseVm<State : UiState, Event : UiEvent>(
     }
 
     protected fun globalNavigator(navigation: FeatureNavigationHelper.() -> NavigationCommand) {
-        navigationCommands.tryEmit(
+        _navigationCommands.trySend(
             NavCommandBundle(
                 featureNavigationCommand = navigation.invoke(FeatureNavigationHelper)
             )
@@ -42,7 +42,7 @@ abstract class BaseVm<State : UiState, Event : UiEvent>(
     }
 
     protected fun flowNavigator(navigation: FlowNavigationHelper.() -> NavigationCommand) {
-        navigationCommands.tryEmit(
+        _navigationCommands.trySend(
             NavCommandBundle(
                 flowNavigationCommand = navigation.invoke(FlowNavigationHelper)
             )

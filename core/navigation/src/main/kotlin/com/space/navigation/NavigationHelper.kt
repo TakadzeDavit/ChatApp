@@ -8,10 +8,10 @@ object FeatureNavigationHelper : NavigationHelper<FeatureNavigationKey>
 
 interface NavigationHelper<key : NavKey> {
     fun push(
-        key: NavKey
+        key: key
     ) = NavigationCommand.Push(key)
 
     fun pop() = NavigationCommand.Pop
 
-    fun replaceLast(key: NavKey) = NavigationCommand.ReplaceLast(key)
+    fun replaceLast(key: key) = NavigationCommand.ReplaceLast(key)
 }

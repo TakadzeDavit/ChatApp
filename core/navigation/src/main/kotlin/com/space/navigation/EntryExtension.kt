@@ -39,7 +39,6 @@ inline fun <reified T : NavKey, reified SCOPE : Any> EntryProviderScope<NavKey>.
 }
 
 
-
 /**
  * Returns an existing scope by qualifier or creates a new one,
  * linking it to the [parent] scope if they are different.

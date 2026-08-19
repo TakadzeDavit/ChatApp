@@ -4,8 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import com.space.navigation.NavCommandBundle
-import com.space.navigation.globalNavigator
-import com.space.navigation.localNavigator
 import com.space.navigation.requireGlobalNavigator
 import com.space.navigation.requireLocalNavigator
 import kotlinx.coroutines.flow.MutableSharedFlow

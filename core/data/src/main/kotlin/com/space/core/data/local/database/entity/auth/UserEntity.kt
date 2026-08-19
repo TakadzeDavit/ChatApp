@@ -1,4 +1,4 @@
-package com.space.core.data.local.database.entity
+package com.space.core.data.local.database.entity.auth
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

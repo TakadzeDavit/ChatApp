@@ -20,7 +20,8 @@ data class ChatAppColors(
     val onSurface: Color,
     val onTransparent: Color,
     val textPrimary: Color,
-    val textSecondary: Color
+    val textSecondary: Color,
+    val error: Color
 )
 
 val LightChatColors = ChatAppColors(
@@ -36,7 +37,8 @@ val LightChatColors = ChatAppColors(
     onSurface = Colors.Neutral06White,
     onTransparent = Colors.PurpleDefault,
     textPrimary = Colors.Neutral01GreatDarkGrey,
-    textSecondary = Colors.Neutral02DarkGrey
+    textSecondary = Colors.Neutral02DarkGrey,
+    error = Colors.ErrorLabel
 )
 
 val DarkChatColors = ChatAppColors(
@@ -52,7 +54,8 @@ val DarkChatColors = ChatAppColors(
     onSurface = Colors.Neutral06White,
     onTransparent = Colors.PurpleDefault,
     textPrimary = Colors.Neutral06White,
-    textSecondary = Colors.Neutral02DarkGrey
+    textSecondary = Colors.Neutral02DarkGrey,
+    error = Colors.ErrorLabel
 )
 
 

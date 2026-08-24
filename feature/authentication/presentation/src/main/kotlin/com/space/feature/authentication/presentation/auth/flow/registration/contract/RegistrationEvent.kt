@@ -4,4 +4,5 @@ import com.space.presentation.UiEvent
 
 sealed interface RegistrationEvent : UiEvent {
     data class OnThemeToggle(val isChecked: Boolean) : RegistrationEvent
+    data object OnRegisterClick : RegistrationEvent
 }

@@ -1,4 +1,4 @@
-package com.space.feature.authentication.presentation.auth.flow.routing.screen.screen
+package com.space.feature.authentication.presentation.auth.flow.routing.screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -14,8 +14,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Switch
-import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -28,9 +26,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.space.authentication.presentation.R
-import com.space.feature.authentication.presentation.auth.flow.routing.screen.contract.RoutingEvent
-import com.space.feature.authentication.presentation.auth.flow.routing.screen.contract.RoutingState
-import com.space.feature.authentication.presentation.auth.flow.routing.screen.vm.RoutingVm
+import com.space.feature.authentication.presentation.auth.flow.routing.contract.RoutingEvent
+import com.space.feature.authentication.presentation.auth.flow.routing.contract.RoutingState
+import com.space.feature.authentication.presentation.auth.flow.routing.vm.RoutingVm
 import com.space.presentation.BaseScreen
 import com.space.ui.component.button.ChatAppSwitch
 import com.space.ui.component.button.PrimaryButton

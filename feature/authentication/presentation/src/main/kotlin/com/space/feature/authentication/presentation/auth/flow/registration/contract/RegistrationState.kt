@@ -9,4 +9,6 @@ data class RegistrationState (
     val email: TextFieldState = TextFieldState(),
     val password: TextFieldState = TextFieldState(),
     val repeatPassword: TextFieldState = TextFieldState(),
+    val error: Int? = null,
+    val isLoading: Boolean = false
 ) : UiState

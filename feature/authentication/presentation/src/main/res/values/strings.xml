@@ -9,4 +9,12 @@
     <string name="password">პაროლი</string>
     <string name="repeat_password">პაროლის გამეორება</string>
     <string name="next">გაგრძელება</string>
+
+    <!-- Validation Errors -->
+    <string name="error_empty_fields">გთხოვთ შეავსოთ ყველა ველი</string>
+    <string name="error_invalid_email">არასწორი ელფოსტის ფორმატი</string>
+    <string name="error_invalid_password">პაროლი უნდა შეიცავდეს მინიმუმ 8 სიმბოლოს</string>
+    <string name="error_passwords_do_not_match">პაროლები არ ემთხვევა ერთმანეთს</string>
+    <string name="error_user_already_exists">მომხმარებელი ამ ელფოსტით უკვე არსებობს</string>
+    <string name="error_unknown">დაფიქსირდა შეცდომა, სცადეთ მოგვიანებით</string>
 </resources>

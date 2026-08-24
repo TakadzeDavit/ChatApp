@@ -1,4 +1,4 @@
-package com.space.feature.authentication.presentation.auth.flow.routing.screen.contract
+package com.space.feature.authentication.presentation.auth.flow.routing.contract
 
 import com.space.presentation.UiState
 

@@ -2,17 +2,16 @@ package com.space.feature.authentication.presentation.auth.flow.registration.scr
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -139,13 +138,32 @@ private fun RegistrationContent(
                 label = stringResource(com.space.authentication.presentation.R.string.repeat_password)
             )
 
-            Spacer(modifier = Modifier.height(Spacing.spacing48))
+            Spacer(modifier = Modifier.height(Spacing.spacing12))
+        }
+
+        item {
+            state.error?.let { errorResId ->
+                Text(
+                    text = stringResource(errorResId),
+                    color = colors.error,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Medium,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 4.dp)
+                )
+            }
+
+            Spacer(modifier = Modifier.height(Spacing.spacing28))
         }
 
         item {
             PrimaryButton(
                 text = stringResource(com.space.authentication.presentation.R.string.next),
-                onClick = {  }
+                enabled = !state.isLoading,
+                onClick = {
+                    onEvent(RegistrationEvent.OnRegisterClick)
+                }
             )
         }
     }

@@ -30,7 +30,7 @@ fun SecondaryButton(
 
     Box(
         modifier = modifier
-            .height(52.dp)
+            .height(Sizing.buttonHeight)
             .fillMaxWidth()
             .clip(shape)
             .background(colors.transparent)

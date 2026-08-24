@@ -40,4 +40,3 @@ fun includeAllModules(vararg groupDirs: String) {
             }
     }
 }
-include(":feature:authentication:data")

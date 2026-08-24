@@ -9,5 +9,4 @@ android {
 
 dependencies {
     implementation(projects.feature.authentication.domain)
-    implementation(projects.core.domain)
 }

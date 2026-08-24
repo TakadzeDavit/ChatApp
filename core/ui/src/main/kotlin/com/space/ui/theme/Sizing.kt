@@ -9,6 +9,7 @@ object Sizing {
     val toggleHeight = Dimensions.dimension28
     val toggleWidth = Dimensions.dimension54
     val loaderSize = Dimensions.dimension24
+    val buttonHeight = Dimensions.dimension54
     val switchIconSize = Dimensions.dimension16
     val buttonStrokeSize = Dimensions.dimension02
 }

@@ -8,7 +8,7 @@ import org.koin.dsl.bind
 import org.koin.dsl.module
 import org.koin.plugin.module.dsl.scoped
 
-val featureAuthDataModule = module {
+val authDataModule = module {
     includes(coreDataModule)
 
     scope<AuthScope.RegistrationScope> {

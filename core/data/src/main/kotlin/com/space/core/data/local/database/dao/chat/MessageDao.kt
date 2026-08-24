@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 interface MessageDao {
 
     @Insert
-    suspend fun sentMessage(message: MessageEntity)
+    suspend fun sendMessage(message: MessageEntity)
 
     @Query("SELECT * FROM messages WHERE chatId = :chatId ORDER BY timeStamp ASC")
     fun getAllMessages(chatId: String): Flow<List<MessageEntity>>

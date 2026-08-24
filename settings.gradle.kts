@@ -40,3 +40,4 @@ fun includeAllModules(vararg groupDirs: String) {
             }
     }
 }
+include(":feature:chat:domain")

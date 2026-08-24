@@ -18,7 +18,7 @@ class FeatureDataPlugin : Plugin<Project> {
             dependencies {
              //   implementationLibrary(CORE_DOMAIN_MODULE)
                 implementationModule(CORE_DATA_MODULE)
-              //  implementationModule(":feature:${featureName()}:domain")
+                implementationModule(":feature:${featureName()}:domain")
                 testImplementationBundle("test")
                 implementationBundle("koin")
             }

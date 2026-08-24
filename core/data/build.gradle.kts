@@ -11,5 +11,6 @@ dependencies {
     implementation(libs.bundles.room)
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.bundles.koin)
+    implementation(projects.core.domain)
     ksp(libs.room.compiler)
 }

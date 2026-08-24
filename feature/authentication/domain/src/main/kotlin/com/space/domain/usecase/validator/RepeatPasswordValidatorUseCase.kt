@@ -1,4 +1,4 @@
-package com.space.core.domain.validator
+package com.space.domain.usecase.validator
 
 class RepeatPasswordValidatorUseCase {
     operator fun invoke(password: String, repeatPassword: String): Boolean {

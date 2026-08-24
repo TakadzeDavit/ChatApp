@@ -3,11 +3,11 @@ package com.space.feature.authentication.presentation.auth.flow.registration.vm
 import androidx.lifecycle.viewModelScope
 import com.space.authentication.presentation.R
 import com.space.core.domain.common.ApiResult
-import com.space.core.domain.validator.EmailValidatorUseCase
-import com.space.core.domain.validator.EmptyFieldsValidatorUseCase
-import com.space.core.domain.validator.PasswordValidatorUseCase
-import com.space.core.domain.validator.RepeatPasswordValidatorUseCase
-import com.space.domain.usecase.RegisterUserUseCase
+import com.space.domain.usecase.validator.EmailValidatorUseCase
+import com.space.domain.usecase.validator.EmptyFieldsValidatorUseCase
+import com.space.domain.usecase.validator.PasswordValidatorUseCase
+import com.space.domain.usecase.validator.RepeatPasswordValidatorUseCase
+import com.space.domain.usecase.register.RegisterUserUseCase
 import com.space.feature.authentication.presentation.auth.flow.registration.contract.RegistrationEvent
 import com.space.feature.authentication.presentation.auth.flow.registration.contract.RegistrationState
 import com.space.presentation.BaseVm

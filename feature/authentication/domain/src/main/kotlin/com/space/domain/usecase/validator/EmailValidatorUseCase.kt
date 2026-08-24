@@ -1,4 +1,4 @@
-package com.space.core.domain.validator
+package com.space.domain.usecase.validator
 
 class EmailValidatorUseCase {
     operator fun invoke(email: String): Boolean {

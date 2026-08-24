@@ -1,4 +1,4 @@
-package com.space.domain.usecase
+package com.space.domain.usecase.register
 
 import com.space.domain.repository.RegisterRepository
 

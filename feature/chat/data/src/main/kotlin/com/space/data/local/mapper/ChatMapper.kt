@@ -1,24 +1,27 @@
 package com.space.data.local.mapper
 
+import base.BaseMapper
 import com.space.core.data.local.database.entity.chat.ChatEntity
 import com.space.domain.model.ChatResponse
 
-class ChatMapper {
-    fun toDomain(chat: ChatEntity): ChatResponse {
+class ChatEntityMapperToResponse : BaseMapper<ChatEntity, ChatResponse> {
+    override fun map(input: ChatEntity): ChatResponse {
         return ChatResponse(
-            id = chat.id,
-            ownerId = chat.ownerId,
-            contactName = chat.contactName,
-            createdAt = chat.createdAt
+            id = input.id,
+            ownerId = input.ownerId,
+            contactName = input.contactName,
+            createdAt = input.createdAt
         )
     }
+}
 
-    fun toEntity(chat: ChatResponse): ChatEntity {
+class ChatResponseMapperToEntity : BaseMapper<ChatResponse, ChatEntity> {
+    override fun map(input: ChatResponse): ChatEntity {
         return ChatEntity(
-            id = chat.id,
-            ownerId = chat.ownerId,
-            contactName = chat.contactName,
-            createdAt = chat.createdAt
+            id = input.id,
+            ownerId = input.ownerId,
+            contactName = input.contactName,
+            createdAt = input.createdAt
         )
     }
 }

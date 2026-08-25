@@ -1,26 +1,29 @@
 package com.space.data.local.mapper
 
+import base.BaseMapper
 import com.space.core.data.local.database.entity.chat.MessageEntity
 import com.space.domain.model.MessageResponse
 
-class MessageMapper {
-    fun toDomain(message : MessageEntity): MessageResponse {
+class MessageEntityMapperToResponse : BaseMapper<MessageEntity, MessageResponse> {
+    override fun map(input: MessageEntity): MessageResponse {
         return MessageResponse(
-            id = message.id,
-            chatId = message.chatId,
-            text = message.text,
-            isSentByOwner = message.isSentByOwner,
-            timeStamp = message.timeStamp
+            id = input.id,
+            chatId = input.chatId,
+            text = input.text,
+            isSentByOwner = input.isSentByOwner,
+            timeStamp = input.timeStamp
         )
     }
+}
 
-    fun toEntity(message : MessageResponse): MessageEntity {
+class MessageResponseMapperToEntity : BaseMapper<MessageResponse, MessageEntity> {
+    override fun map(input: MessageResponse): MessageEntity {
         return MessageEntity(
-            id = message.id,
-            chatId = message.chatId,
-            text = message.text,
-            isSentByOwner = message.isSentByOwner,
-            timeStamp = message.timeStamp
+            id = input.id,
+            chatId = input.chatId,
+            text = input.text,
+            isSentByOwner = input.isSentByOwner,
+            timeStamp = input.timeStamp,
         )
     }
 }

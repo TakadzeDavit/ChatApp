@@ -7,7 +7,7 @@ import org.koin.dsl.*
 import org.koin.dsl.module
 import org.koin.plugin.module.dsl.scoped
 
-val featureChatDataModule = module {
+val chatDataModule = module {
     scope<ChatScope.ParentScope> {
         scoped<ChatRepositoryImpl>() bind ChatRepository::class
     }

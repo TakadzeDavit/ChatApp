@@ -1,10 +1,10 @@
-package com.space.core.data.local.database.dao
+package com.space.core.data.local.database.dao.auth
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.space.core.data.local.database.entity.UserEntity
+import com.space.core.data.local.database.entity.auth.UserEntity
 
 @Dao
 interface UserDao {

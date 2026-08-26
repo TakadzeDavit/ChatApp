@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.space.chatapp.navigation.MovieAppContainer
+import com.space.chatapp.navigation.ChatAppContainer
 import com.space.feature.authentication.api.AuthFeatureKey
 import com.space.ui.theme.ChatAppTheme
 
@@ -16,7 +16,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ChatAppTheme {
-                MovieAppContainer(
+                ChatAppContainer(
                     startDestination = AuthFeatureKey
                 )
             }

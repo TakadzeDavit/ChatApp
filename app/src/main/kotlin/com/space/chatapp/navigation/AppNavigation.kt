@@ -13,7 +13,7 @@ import com.space.navigation.LocalGlobalNavigator
 import com.space.navigation.rememberNavigator
 
 @Composable
-fun MainActivity.MovieAppContainer(
+fun MainActivity.ChatAppContainer(
     startDestination: NavKey,
 ) {
     val navigator = rememberNavigator(startDestination)

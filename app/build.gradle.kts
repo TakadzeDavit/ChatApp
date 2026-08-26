@@ -31,4 +31,9 @@ dependencies {
     implementation(projects.core.data)
 
     implementation(projects.feature.chat.data)
+    implementation(projects.core.navigation)
+    implementation(projects.core.presentation)
+    implementation(projects.feature.authentication.api)
+    implementation(projects.feature.authentication.presentation)
+    implementation(projects.feature.authentication.data)
 }

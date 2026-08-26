@@ -1,10 +1,14 @@
 package com.space.core.data.local.database.entity.auth
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import java.util.UUID
 
-@Entity(tableName = "users")
+@Entity(
+    tableName = "users",
+    indices = [Index(value = ["email"], unique = true)]
+)
 data class UserEntity(
     @PrimaryKey val id : String = UUID.randomUUID().toString(),
     val name: String,

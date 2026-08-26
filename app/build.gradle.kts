@@ -29,6 +29,9 @@ dependencies {
     // modules
     implementation(projects.core.ui)
     implementation(projects.core.data)
+    implementation(projects.core.navigation)
 
     implementation(projects.feature.chat.data)
+    implementation(projects.feature.chat.presentation)
+    implementation(projects.feature.chat.api)
 }

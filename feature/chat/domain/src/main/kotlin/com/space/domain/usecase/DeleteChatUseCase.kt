@@ -7,5 +7,5 @@ import com.space.domain.repository.ChatRepository
 class DeleteChatUseCase(
     private val repository: ChatRepository
 ) {
-    suspend operator fun invoke(chat: ChatResponse) = repository.deleteChat(chat)
+    suspend operator fun invoke(chatId: String) = repository.deleteChat(chatId)
 }

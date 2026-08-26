@@ -1,3 +1,4 @@
+import com.space.chatapp.extensions.CORE_DOMAIN_MODULE
 import com.space.chatapp.extensions.CORE_NAVIGATION_MODULE
 import com.space.chatapp.extensions.CORE_PRESENTATION_MODULE
 import com.space.chatapp.extensions.CORE_UI_MODULE
@@ -17,7 +18,7 @@ class FeaturePresentationPlugin : Plugin<Project> {
             pluginManager.apply("io.insert-koin.compiler.plugin")
 
             dependencies {
-                //  implementationModule(CORE_DOMAIN_MODULE)
+                implementationModule(CORE_DOMAIN_MODULE)
                 implementationModule(CORE_UI_MODULE)
                 implementationModule(CORE_NAVIGATION_MODULE)
                 implementationModule(CORE_PRESENTATION_MODULE)

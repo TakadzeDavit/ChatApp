@@ -13,19 +13,14 @@ import org.koin.plugin.module.dsl.scoped
 import org.koin.plugin.module.dsl.viewModel
 
 val authPresentationModule = module {
+    includes(registrationModule)
+    includes(routingModule)
+    includes(loginModule)
+
     scope<AuthScope.Parent> {
         scoped<EmailValidatorUseCase>()
         scoped<EmptyFieldsValidatorUseCase>()
         scoped<PasswordValidatorUseCase>()
         scoped<RepeatPasswordValidatorUseCase>()
-    }
-
-    scope<AuthScope.RoutingScope> {
-        viewModel<RoutingVm>()
-    }
-
-    scope<AuthScope.RegistrationScope> {
-        viewModel<RegistrationVm>()
-        scoped<RegisterUserUseCase>()
     }
 }

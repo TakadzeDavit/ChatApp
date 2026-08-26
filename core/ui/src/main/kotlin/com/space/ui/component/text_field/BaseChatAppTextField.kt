@@ -1,6 +1,7 @@
 package com.space.ui.component.text_field
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,11 +13,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.space.ui.theme.ChatAppTheme.colors
 import com.space.ui.theme.Radius
+import com.space.ui.theme.Sizing
 import com.space.ui.theme.Spacing
+import com.space.ui.theme.TextSizing
 
 @Composable
 fun BaseChatAppTextField(
@@ -29,16 +33,23 @@ fun BaseChatAppTextField(
         Text(
             text = label,
             color = colors.textSecondary,
-            fontSize = 14.sp,
+            fontSize = TextSizing.size14,
             modifier = Modifier.padding(bottom = Spacing.spacing08)
         )
 
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(52.dp)
-                .clip(Radius.textFieldRadius)
-                .background(colors.inputTextField)
+                .height(Sizing.buttonHeight)
+                .background(
+                    color = colors.inputTextField,
+                    shape = Radius.textFieldRadius
+                )
+                .border(
+                    width = 1.dp,
+                    color = colors.buttonBorder,
+                    shape = Radius.textFieldRadius
+                )
                 .padding(horizontal = Spacing.spacing12),
             verticalAlignment = Alignment.CenterVertically
         ) {

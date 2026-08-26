@@ -5,3 +5,4 @@ import kotlinx.serialization.Serializable
 
 @Serializable data object RouteScreenKey : FlowNavigationKey
 @Serializable data object RegistrationScreenKey : FlowNavigationKey
+@Serializable data object LoginScreenKey : FlowNavigationKey

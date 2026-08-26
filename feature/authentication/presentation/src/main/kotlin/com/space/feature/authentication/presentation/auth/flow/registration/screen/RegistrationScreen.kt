@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,6 +32,7 @@ import com.space.ui.component.text_field.ChatAppTextField
 import com.space.ui.theme.ChatAppTheme
 import com.space.ui.theme.ChatAppTheme.colors
 import com.space.ui.theme.Spacing
+import com.space.ui.theme.TextSizing
 
 @Composable
 fun RegistrationScreen() {
@@ -71,7 +71,7 @@ private fun RegistrationContent(
                     isDarkTheme = state.isDarkTheme,
                     modifier = Modifier
                         .align(Alignment.CenterEnd)
-                        .padding(top = 16.dp),
+                        .padding(top = Spacing.spacing16),
                     activeSwitchIcon = R.drawable.icon_dark,
                     inActiveIcon = R.drawable.icon_light,
                     onCheckChange = { isChecked ->
@@ -86,7 +86,7 @@ private fun RegistrationContent(
         item {
             Text(
                 text = stringResource(com.space.authentication.presentation.R.string.registration),
-                fontSize = 32.sp,
+                fontSize = TextSizing.size30,
                 fontWeight = FontWeight.Bold,
                 color = colors.textPrimary
             )
@@ -97,7 +97,7 @@ private fun RegistrationContent(
         item {
             Text(
                 text = stringResource(com.space.authentication.presentation.R.string.create_new),
-                fontSize = 16.sp,
+                fontSize = TextSizing.size16,
                 fontWeight = FontWeight.Normal,
                 color = colors.textSecondary
             )

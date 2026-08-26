@@ -113,7 +113,9 @@ fun RoutingContent(
         ) {
             PrimaryButton(
                 text = stringResource(R.string.log_in),
-                onClick = {}
+                onClick = {
+                    onEvent(RoutingEvent.OnNavigateLogin)
+                }
             )
 
             SecondaryButton(

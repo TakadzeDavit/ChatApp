@@ -2,6 +2,7 @@ package com.space.feature.authentication.presentation.auth.flow.routing.vm
 
 import com.space.feature.authentication.presentation.auth.flow.routing.contract.RoutingEvent
 import com.space.feature.authentication.presentation.auth.flow.routing.contract.RoutingState
+import com.space.feature.authentication.presentation.navigator.LoginScreenKey
 import com.space.feature.authentication.presentation.navigator.RegistrationScreenKey
 import com.space.presentation.BaseVm
 
@@ -12,6 +13,7 @@ class RoutingVm(
         when (event) {
             is RoutingEvent.OnThemeToggle -> updateState { copy(isDarkTheme = event.isChecked) }
             is RoutingEvent.OnNavigateRegistration -> flowNavigator { push(RegistrationScreenKey) }
+            is RoutingEvent.OnNavigateLogin -> flowNavigator { push(LoginScreenKey) }
         }
     }
 }

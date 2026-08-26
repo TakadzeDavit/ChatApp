@@ -17,4 +17,8 @@
     <string name="error_passwords_do_not_match">პაროლები არ ემთხვევა ერთმანეთს</string>
     <string name="error_user_already_exists">მომხმარებელი ამ ელფოსტით უკვე არსებობს</string>
     <string name="error_unknown">დაფიქსირდა შეცდომა, სცადეთ მოგვიანებით</string>
+    <string name="invalid_password_or_email">პაროლი ან ელფოსტა არასწორია</string>
+    <string name="login">შესვლა</string>
+    <string name="welcome">კეთილი იყოს შენი დაბრუნება</string>
+    <string name="or">ან</string>
 </resources>

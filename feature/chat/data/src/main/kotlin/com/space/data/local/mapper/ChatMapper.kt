@@ -1,6 +1,6 @@
 package com.space.data.local.mapper
 
-import base.BaseMapper
+import com.space.core.domain.common.BaseMapper
 import com.space.core.data.local.database.entity.chat.ChatEntity
 import com.space.domain.model.ChatResponse
 

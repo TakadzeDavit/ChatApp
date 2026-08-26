@@ -26,7 +26,7 @@ class FeaturePresentationPlugin : Plugin<Project> {
                 testImplementationBundle("test")
                 implementationBundle("koin")
                 implementationModule(":feature:${featureName()}:api")
-//                implementationModule(":feature:${featureName()}:domain")
+                implementationModule(":feature:${featureName()}:domain")
                 implementationLibrary("androidx-lifecycle-viewmodel-ktx")
                 implementationLibrary("androidx-lifecycle-viewmodel-compose")
                 implementationLibrary("coil")

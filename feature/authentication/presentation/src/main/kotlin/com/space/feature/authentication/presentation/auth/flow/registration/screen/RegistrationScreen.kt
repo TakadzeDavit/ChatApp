@@ -163,7 +163,8 @@ private fun RegistrationContent(
                 enabled = !state.isLoading,
                 onClick = {
                     onEvent(RegistrationEvent.OnRegisterClick)
-                }
+                },
+                isLoading = state.isLoading
             )
         }
     }

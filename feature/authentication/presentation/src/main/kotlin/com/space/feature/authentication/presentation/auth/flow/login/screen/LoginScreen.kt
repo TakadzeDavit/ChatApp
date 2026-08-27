@@ -106,9 +106,11 @@ private fun LoginContent(
 
         PrimaryButton(
             text = stringResource(com.space.authentication.presentation.R.string.login),
+            enabled = !state.isLoading,
             onClick = {
                 onEvent(LoginEvent.OnLoginClick)
-            }
+            },
+            isLoading = state.isLoading
         )
 
         Spacer(modifier = Modifier.height(Spacing.spacing28))

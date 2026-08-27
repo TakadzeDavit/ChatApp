@@ -8,6 +8,7 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import com.space.chatapp.MainActivity
+import com.space.feature.authentication.presentation.navigator.authFeatureEntry
 import com.space.navigation.LocalGlobalNavigator
 import com.space.navigation.rememberNavigator
 import com.space.presentation.navigator.chatFeatureEntry
@@ -31,6 +32,7 @@ fun MainActivity.ChatAppContainer(
                 if (navigator.backStack.size > 1) navigator.pop() else finishAffinity()
             },
             entryProvider = entryProvider {
+                authFeatureEntry()
                 chatFeatureEntry()
             },
         )

@@ -1,4 +1,4 @@
-package com.space.core.domain.common
+package common
 
 enum class NetworkError {
     USER_ALREADY_EXISTS,

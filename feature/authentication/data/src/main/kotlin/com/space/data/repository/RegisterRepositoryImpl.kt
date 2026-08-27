@@ -2,8 +2,8 @@ package com.space.data.repository
 
 import com.space.core.data.local.database.dao.auth.UserDao
 import com.space.core.data.local.database.entity.auth.UserEntity
-import com.space.core.domain.common.ApiResult
-import com.space.core.domain.common.NetworkError
+import common.ApiResult
+import common.NetworkError
 import com.space.domain.repository.RegisterRepository
 
 class RegisterRepositoryImpl(

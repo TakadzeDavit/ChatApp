@@ -123,7 +123,7 @@ private fun LoginContent(
                 fontWeight = FontWeight.Medium,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 4.dp),
+                    .padding(vertical = Spacing.spacing04),
                 textAlign = TextAlign.Center
             )
         }

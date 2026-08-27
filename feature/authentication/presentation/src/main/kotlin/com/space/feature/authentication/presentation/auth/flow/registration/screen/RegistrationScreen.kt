@@ -146,11 +146,11 @@ private fun RegistrationContent(
                 Text(
                     text = stringResource(errorResId),
                     color = colors.error,
-                    fontSize = 14.sp,
+                    fontSize = TextSizing.size14,
                     fontWeight = FontWeight.Medium,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 4.dp)
+                        .padding(vertical = Spacing.spacing04)
                 )
             }
 

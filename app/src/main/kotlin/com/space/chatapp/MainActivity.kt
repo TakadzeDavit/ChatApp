@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.runtime.Composable
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import com.space.chatapp.navigation.ChatAppContainer
@@ -16,7 +15,6 @@ import com.space.core.data.local.database.entity.chat.ChatEntity
 import com.space.core.data.local.database.entity.chat.MessageEntity
 import com.space.feature.authentication.api.ChatFeatureKey
 import com.space.ui.theme.ChatAppTheme
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 

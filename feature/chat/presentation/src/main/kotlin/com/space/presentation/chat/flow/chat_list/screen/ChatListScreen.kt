@@ -1,7 +1,10 @@
 package com.space.presentation.chat.flow.chat_list.screen
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -10,12 +13,19 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.SwipeToDismissBoxState
+import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import com.space.chat.presentation.R
 import com.space.presentation.BaseScreen
 import com.space.presentation.chat.flow.chat_list.contract.ChatListEvent
@@ -24,6 +34,7 @@ import com.space.presentation.chat.flow.chat_list.vm.ChatListVm
 import com.space.ui.component.AddButton
 import com.space.ui.component.ChatItem
 import com.space.ui.component.EmptyList
+import com.space.ui.component.SwipeToDeleteChatItem
 import com.space.ui.theme.ChatAppTheme.colors
 import com.space.ui.theme.Padding
 import com.space.ui.theme.TextSizing
@@ -83,12 +94,16 @@ private fun ChatListScreenContent(
                             items = state.chats,
                             key = { _, chat -> chat.chatId }
                         ) { index, chat ->
-                            ChatItem(
-                                title = chat.contactName,
-                                lastMessageTime = chat.lastMessageTime?.toFormattedTime(),
-                                lastMessage = chat.lastMessage,
-                                onClick = { onEvent(ChatListEvent.OnChatClicked(chat.chatId)) }
-                            )
+                            SwipeToDeleteChatItem(
+                                onDelete = { onEvent(ChatListEvent.OnChatDeleted(chat.chatId)) }
+                            ) {
+                                ChatItem(
+                                    title = chat.contactName,
+                                    lastMessageTime = chat.lastMessageTime?.toFormattedTime(),
+                                    lastMessage = chat.lastMessage,
+                                    onClick = { onEvent(ChatListEvent.OnChatClicked(chat.chatId)) },
+                                )
+                            }
                             if (index < state.chats.lastIndex) {
                                 HorizontalDivider(
                                     modifier = Modifier.padding(horizontal = Padding.chatListPadding),

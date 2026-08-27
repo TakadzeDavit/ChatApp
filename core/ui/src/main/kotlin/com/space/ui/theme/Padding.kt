@@ -19,6 +19,7 @@ object Padding {
     val chatListPadding = Dimensions.dimension16
     val addButtonPadding = Dimensions.dimension16
     val chatItemPaddingH = Dimensions.dimension08
+    val swipeIconPadding = Dimensions.dimension16
     val chatItemPaddingV = Dimensions.dimension06
     val chatItemPadding = Dimensions.dimension06
     val dialogPadding = Dimensions.dimension24

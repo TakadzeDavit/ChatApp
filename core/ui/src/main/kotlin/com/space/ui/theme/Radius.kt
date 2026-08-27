@@ -8,4 +8,5 @@ object Radius {
     val dialogRadius = RoundedCornerShape(Dimensions.dimension20)
     val buttonRadius = RoundedCornerShape(Dimensions.dimension16)
     val textFieldRadius = RoundedCornerShape(Dimensions.dimension12)
+    val chatItemRadius =   RoundedCornerShape(Dimensions.dimension08)
 }

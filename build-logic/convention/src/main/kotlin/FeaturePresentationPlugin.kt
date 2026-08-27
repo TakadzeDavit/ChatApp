@@ -1,6 +1,7 @@
 import com.space.chatapp.extensions.CORE_DOMAIN_MODULE
 import com.space.chatapp.extensions.CORE_NAVIGATION_MODULE
 import com.space.chatapp.extensions.CORE_PRESENTATION_MODULE
+import com.space.chatapp.extensions.CORE_TESTING
 import com.space.chatapp.extensions.CORE_UI_MODULE
 import com.space.chatapp.extensions.featureName
 import com.space.chatapp.extensions.implementationBundle
@@ -23,6 +24,7 @@ class FeaturePresentationPlugin : Plugin<Project> {
                 implementationModule(CORE_UI_MODULE)
                 implementationModule(CORE_NAVIGATION_MODULE)
                 implementationModule(CORE_PRESENTATION_MODULE)
+                implementationModule(CORE_TESTING)
                 testImplementationBundle("test")
                 implementationBundle("koin")
                 implementationModule(":feature:${featureName()}:api")

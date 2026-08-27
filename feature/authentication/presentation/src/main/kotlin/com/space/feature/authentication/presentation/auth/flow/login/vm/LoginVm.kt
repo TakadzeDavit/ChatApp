@@ -37,7 +37,7 @@ class LoginVm(
         // error resource id
         val errorMessageResId = when {
             !isEmailValid -> R.string.error_invalid_email
-            isPasswordValid -> R.string.error_invalid_password
+            !isPasswordValid -> R.string.error_invalid_password
             else -> null
         }
 

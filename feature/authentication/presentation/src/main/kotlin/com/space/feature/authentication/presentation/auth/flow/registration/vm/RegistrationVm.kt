@@ -48,7 +48,7 @@ class RegistrationVm(
         val errorMessageResId = when {
             isFieldsEmpty -> R.string.error_empty_fields
             !isEmailValid -> R.string.error_invalid_email
-            isPasswordValid -> R.string.error_invalid_password
+            !isPasswordValid -> R.string.error_invalid_password
             !isRepeatPasswordValid -> R.string.error_passwords_do_not_match
             else -> null
         }

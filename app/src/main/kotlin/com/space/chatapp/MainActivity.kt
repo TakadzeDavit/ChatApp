@@ -30,49 +30,49 @@ class MainActivity : ComponentActivity() {
             userDao.insertUser(
                 UserEntity("test-user-123", "Sandro", "adasd", "asdas")
             )
-//            chatDao.addChat(
-//                ChatEntity(
-//                    id = "chat1",
-//                    ownerId = "test-user-123",
-//                    contactName = "Daviti",
-//                )
-//            )
-//            chatDao.addChat(
-//                ChatEntity(
-//                    id = "chat2",
-//                    ownerId = "test-user-123",
-//                    contactName = "Tornike",
-//                )
-//            )
-//            chatDao.addChat(
-//                ChatEntity(
-//                    id = "chat3",
-//                    ownerId = "test-user-123",
-//                    contactName = "Nino",
-//                )
-//            )
-//            chatDao.addChat(
-//                ChatEntity(
-//                    id = "chat4",
-//                    ownerId = "test-user-123",
-//                    contactName = "მარიამ",
-//                )
-//            )
-//            chatDao.addChat(
-//                ChatEntity(
-//                    id = "chat5",
-//                    ownerId = "test-user-123",
-//                    contactName = "ანა",
-//                )
-//            )
-//            messageDao.sendMessage(
-//                MessageEntity(
-//                    id = "message1",
-//                    chatId = "chat1",
-//                    text = "rogor xar",
-//                    isSentByOwner = false,
-//                )
-//            )
+            chatDao.addChat(
+                ChatEntity(
+                    id = "chat1",
+                    ownerId = "test-user-123",
+                    contactName = "Daviti",
+                )
+            )
+            chatDao.addChat(
+                ChatEntity(
+                    id = "chat2",
+                    ownerId = "test-user-123",
+                    contactName = "Tornike",
+                )
+            )
+            chatDao.addChat(
+                ChatEntity(
+                    id = "chat3",
+                    ownerId = "test-user-123",
+                    contactName = "Nino",
+                )
+            )
+            chatDao.addChat(
+                ChatEntity(
+                    id = "chat4",
+                    ownerId = "test-user-123",
+                    contactName = "მარიამ",
+                )
+            )
+            chatDao.addChat(
+                ChatEntity(
+                    id = "chat5",
+                    ownerId = "test-user-123",
+                    contactName = "ანა",
+                )
+            )
+            messageDao.sendMessage(
+                MessageEntity(
+                    id = "message1",
+                    chatId = "chat1",
+                    text = "rogor xar",
+                    isSentByOwner = false,
+                )
+            )
         }
         setContent {
             ChatAppTheme {

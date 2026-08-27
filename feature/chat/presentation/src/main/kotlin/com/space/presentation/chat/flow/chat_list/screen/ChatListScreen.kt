@@ -23,6 +23,7 @@ import com.space.presentation.chat.flow.chat_list.contract.ChatListState
 import com.space.presentation.chat.flow.chat_list.vm.ChatListVm
 import com.space.ui.component.AddButton
 import com.space.ui.component.ChatItem
+import com.space.ui.component.EmptyList
 import com.space.ui.theme.ChatAppTheme.colors
 import com.space.ui.theme.Padding
 import com.space.ui.theme.TextSizing
@@ -71,9 +72,10 @@ private fun ChatListScreenContent(
 
                 else -> {
                     if (state.chats.isEmpty()) {
-                        Text(
-                            text = "No chats found",
-                            modifier = Modifier.align(Alignment.Center)
+                        EmptyList(
+                            modifier = Modifier.align(Alignment.Center),
+                            primaryText = stringResource(R.string.no_chats),
+                            secondaryText = stringResource(R.string.start_chat)
                         )
                     }
                     LazyColumn(modifier = Modifier.fillMaxSize()) {

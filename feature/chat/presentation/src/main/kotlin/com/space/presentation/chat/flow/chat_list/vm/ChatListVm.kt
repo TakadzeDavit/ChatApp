@@ -1,7 +1,6 @@
 package com.space.presentation.chat.flow.chat_list.vm
 
 import androidx.lifecycle.viewModelScope
-import com.space.domain.model.ChatResponse
 import com.space.domain.usecase.DeleteChatUseCase
 import com.space.domain.usecase.GetAllChatsUseCase
 import com.space.presentation.BaseVm

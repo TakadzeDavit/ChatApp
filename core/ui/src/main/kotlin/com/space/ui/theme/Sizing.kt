@@ -15,4 +15,7 @@ object Sizing {
     val buttonHeight = Dimensions.dimension54
     val switchIconSize = Dimensions.dimension16
     val buttonStrokeSize = Dimensions.dimension02
+    val emptyIconSize = Dimensions.dimension150
+    val sizing20 = Dimensions.dimension20
+    val sizing12 = Dimensions.dimension12
 }

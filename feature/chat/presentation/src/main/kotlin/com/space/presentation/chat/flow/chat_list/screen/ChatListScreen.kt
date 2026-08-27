@@ -1,22 +1,33 @@
 package com.space.presentation.chat.flow.chat_list.screen
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import com.space.chat.presentation.R
 import com.space.presentation.BaseScreen
 import com.space.presentation.chat.flow.chat_list.contract.ChatListEvent
 import com.space.presentation.chat.flow.chat_list.contract.ChatListState
 import com.space.presentation.chat.flow.chat_list.vm.ChatListVm
+import com.space.ui.component.AddButton
 import com.space.ui.component.ChatItem
+import com.space.ui.theme.ChatAppTheme.colors
+import com.space.ui.theme.Padding
+import com.space.ui.theme.TextSizing
 import com.space.ui.utils.toFormattedTime
 import org.koin.core.parameter.parametersOf
-
 
 @Composable
 fun ChatListScreen() {
@@ -33,40 +44,65 @@ private fun ChatListScreenContent(
     state: ChatListState,
     onEvent: (ChatListEvent) -> Unit
 ) {
-    Box(modifier = Modifier.fillMaxSize()) {
-        when {
-            state.isLoading -> {
-                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-            }
+    Column(modifier = Modifier.fillMaxSize()) {
+        Spacer(Modifier.height(Padding.chatListScreenTopPadding))
+        Text(
+            text = stringResource(R.string.chats),
+            fontSize = TextSizing.size30,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(
+                horizontal = Padding.chatTitlePaddingH,
+                vertical = Padding.chatTitlePaddingV
+            )
+        )
+        Spacer(Modifier.height(Padding.chatListTopPadding))
+        Box(modifier = Modifier.fillMaxSize()) {
+            when {
+                state.isLoading -> {
+                    CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+                }
 
-            state.errorMessage != null -> {
-                Text(
-                    text = state.errorMessage,
-                    modifier = Modifier.align(Alignment.Center)
-                )
-            }
-
-            else -> {
-                if(state.chats.isEmpty()) {
+                state.errorMessage != null -> {
                     Text(
-                        text = "No chats found",
+                        text = state.errorMessage,
                         modifier = Modifier.align(Alignment.Center)
                     )
                 }
-                LazyColumn(modifier = Modifier.fillMaxSize()) {
-                    items(
-                        items = state.chats,
-                        key = { it.chatId }
-                    ) { item ->
-                        ChatItem(
-                            title = item.contactName,
-                            lastMessageTime = item.lastMessageTime?.toFormattedTime(),
-                            lastMessage = item.lastMessage,
-                            onClick = { onEvent(ChatListEvent.OnChatClicked(item.chatId)) }
+
+                else -> {
+                    if (state.chats.isEmpty()) {
+                        Text(
+                            text = "No chats found",
+                            modifier = Modifier.align(Alignment.Center)
                         )
+                    }
+                    LazyColumn(modifier = Modifier.fillMaxSize()) {
+                        itemsIndexed(
+                            items = state.chats,
+                            key = { _, chat -> chat.chatId }
+                        ) { index, chat ->
+                            ChatItem(
+                                title = chat.contactName,
+                                lastMessageTime = chat.lastMessageTime?.toFormattedTime(),
+                                lastMessage = chat.lastMessage,
+                                onClick = { onEvent(ChatListEvent.OnChatClicked(chat.chatId)) }
+                            )
+                            if (index < state.chats.lastIndex) {
+                                HorizontalDivider(
+                                    modifier = Modifier.padding(horizontal = Padding.chatListPadding),
+                                    color = colors.textPrimary.copy(alpha = 0.1f)
+                                )
+                            }
+                        }
                     }
                 }
             }
+            AddButton(
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(Padding.addButtonPadding),
+                onClick = { onEvent(ChatListEvent.OnAddChatClicked) }
+            )
         }
     }
 }

@@ -4,6 +4,7 @@ import androidx.compose.ui.unit.sp
 
 object TextSizing {
     val size0 = 0.sp
+    val size10 = 10.sp
     val size12 = 12.sp
     val size14 = 14.sp
     val size18 = 18.sp

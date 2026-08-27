@@ -16,14 +16,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.space.chatapp.core.ui.R
 import com.space.ui.theme.ChatAppTheme
 import com.space.ui.theme.ChatAppTheme.colors
 import com.space.ui.theme.Colors
+import com.space.ui.theme.Padding
+import com.space.ui.theme.Sizing
+import com.space.ui.theme.TextSizing
 
 @Composable
 fun ChatItem(
@@ -35,8 +38,8 @@ fun ChatItem(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .height(50.dp)
-            .padding(horizontal = 6.dp)
+            .height(Sizing.chatItemHeight)
+            .padding(horizontal = Padding.chatItemPaddingH)
             .clickable(onClick = onClick),
         verticalAlignment = Alignment.CenterVertically,
 
@@ -45,24 +48,28 @@ fun ChatItem(
         Column(
             modifier = Modifier
                 .fillMaxHeight()
-                .padding(horizontal = 8.dp, vertical = 4.dp)
+                .padding(
+                    horizontal = Padding.chatItemPaddingH,
+                    vertical = Padding.chatItemPaddingV
+                )
                 .weight(1f),
         ) {
             Text(text = title)
             Text(
-                text = lastMessage ?: "",
-                fontSize = 12.sp,
-                lineHeight = 12.sp,
+                text = lastMessage ?: stringResource(R.string.empty_last_message),
+                color = colors.textPrimary.copy(alpha = 0.5f),
+                fontSize = TextSizing.size12,
+                lineHeight = TextSizing.size12,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
         }
         Text(
             text = lastMessageTime ?: "",
-            fontSize = 10.sp,
+            fontSize = TextSizing.size10,
             modifier = Modifier
                 .align(Alignment.Top)
-                .padding(horizontal = 8.dp)
+                .padding(horizontal = Padding.chatItemPaddingH)
         )
     }
 }
@@ -71,14 +78,14 @@ fun ChatItem(
 fun LetterIcon(
     title: String,
     modifier: Modifier = Modifier,
-    backgroundColor: Color = Colors.Dark02Blue,
+    backgroundColor: Color = getRandomColor(),
     textColor: Color = colors.onSurface,
 ) {
     val initial = title.firstOrNull() ?: "?"
 
     Box(
         modifier = modifier
-            .size(40.dp)
+            .size(Sizing.letterIconSize)
             .background(
                 color = backgroundColor,
                 shape = CircleShape
@@ -88,19 +95,29 @@ fun LetterIcon(
         Text(
             text = initial.toString(),
             color = textColor,
-            fontSize = 16.sp,
+            fontSize = TextSizing.size18,
             fontWeight = FontWeight.Bold,
         )
     }
 }
 
-//@Composable
-//@Preview
-//private fun LetterIconPreview() {
-//    ChatAppTheme {
-//        LetterIcon("სანდრო")
-//    }
-//}
+@Composable
+@Preview
+private fun LetterIconPreview() {
+    ChatAppTheme {
+        LetterIcon("სანდრო")
+    }
+}
+
+private fun getRandomColor(): Color {
+    val colorPool = arrayOf(
+        Colors.PurpleDefault,
+        Colors.Dark01MidnightBlue,
+        Colors.Yellow,
+        Colors.PurpleLight
+    )
+    return colorPool.random()
+}
 
 @Composable
 @Preview(

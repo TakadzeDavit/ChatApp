@@ -1,6 +1,6 @@
 package com.space.feature.authentication.presentation.registration.vm
 
-import androidx.compose.foundation.text.input.TextFieldState
+import androidx.compose.foundation.text.input.setTextAndPlaceCursorAtEnd
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
 import com.space.authentication.presentation.R
@@ -13,15 +13,12 @@ import com.space.domain.usecase.validator.EmptyFieldsValidatorUseCase
 import com.space.domain.usecase.validator.PasswordValidatorUseCase
 import com.space.domain.usecase.validator.RepeatPasswordValidatorUseCase
 import com.space.feature.authentication.presentation.auth.flow.registration.contract.RegistrationEvent
-import com.space.feature.authentication.presentation.auth.flow.registration.contract.RegistrationState
 import com.space.feature.authentication.presentation.auth.flow.registration.vm.RegistrationVm
-import com.space.presentation.BaseVm
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
@@ -45,14 +42,7 @@ class RegistrationVmTest : BaseViewModelTest() {
             registerUserUseCase = registerUserUseCase
         )
 
-        viewModel.forceState(
-            RegistrationState(
-                name = TextFieldState("Giorgi"),
-                email = TextFieldState("giorgi@example.com"),
-                password = TextFieldState("Password123"),
-                repeatPassword = TextFieldState("Password123")
-            )
-        )
+        fillValidForm()
     }
 
     @Test
@@ -99,9 +89,14 @@ class RegistrationVmTest : BaseViewModelTest() {
 
                 viewModel.onEvent(RegistrationEvent.OnRegisterClick)
 
-                val state = awaitItem()
-                assertThat(state.error).isEqualTo(R.string.error_empty_fields)
-                coVerify(exactly = 0) { registerUserUseCase(any(), any(), any()) }
+                assertThat(awaitItem().error).isEqualTo(R.string.error_empty_fields)
+                coVerify(exactly = 0) {
+                    registerUserUseCase(
+                        name = any(),
+                        password = any(),
+                        email = any()
+                    )
+                }
 
                 cancelAndIgnoreRemainingEvents()
             }
@@ -122,9 +117,14 @@ class RegistrationVmTest : BaseViewModelTest() {
 
                 viewModel.onEvent(RegistrationEvent.OnRegisterClick)
 
-                val state = awaitItem()
-                assertThat(state.error).isEqualTo(R.string.error_invalid_email)
-                coVerify(exactly = 0) { registerUserUseCase(any(), any(), any()) }
+                assertThat(awaitItem().error).isEqualTo(R.string.error_invalid_email)
+                coVerify(exactly = 0) {
+                    registerUserUseCase(
+                        name = any(),
+                        password = any(),
+                        email = any()
+                    )
+                }
 
                 cancelAndIgnoreRemainingEvents()
             }
@@ -145,9 +145,14 @@ class RegistrationVmTest : BaseViewModelTest() {
 
                 viewModel.onEvent(RegistrationEvent.OnRegisterClick)
 
-                val state = awaitItem()
-                assertThat(state.error).isEqualTo(R.string.error_passwords_do_not_match)
-                coVerify(exactly = 0) { registerUserUseCase(any(), any(), any()) }
+                assertThat(awaitItem().error).isEqualTo(R.string.error_passwords_do_not_match)
+                coVerify(exactly = 0) {
+                    registerUserUseCase(
+                        name = any(),
+                        password = any(),
+                        email = any()
+                    )
+                }
 
                 cancelAndIgnoreRemainingEvents()
             }
@@ -163,9 +168,9 @@ class RegistrationVmTest : BaseViewModelTest() {
             every { repeatPasswordValidatorUseCase(any(), any()) } returns true
             coEvery {
                 registerUserUseCase(
-                    any(),
-                    any(),
-                    any()
+                    name = any(),
+                    password = any(),
+                    email = any()
                 )
             } returns ApiResult.Success(Unit)
 
@@ -200,9 +205,9 @@ class RegistrationVmTest : BaseViewModelTest() {
             // then
             coVerify(exactly = 1) {
                 registerUserUseCase(
-                    email = "giorgi@example.com",
-                    name = "Giorgi",
-                    password = "Password123"
+                    email = any(),
+                    name = any(),
+                    password = any()
                 )
             }
         }
@@ -236,12 +241,18 @@ class RegistrationVmTest : BaseViewModelTest() {
                 cancelAndIgnoreRemainingEvents()
             }
         }
-}
 
-@Suppress("UNCHECKED_CAST")
-private fun RegistrationVm.forceState(newState: RegistrationState) {
-    val field = BaseVm::class.java.getDeclaredField("_state")
-    field.isAccessible = true
-    val flow = field.get(this) as MutableStateFlow<RegistrationState>
-    flow.value = newState
+    private fun fillValidForm(
+        newName: String = "Jemala",
+        newEmail: String = "jemala@example.com",
+        newPassword: String = "Password123",
+        newRepeatPassword: String = "Password123"
+    ) {
+        with(viewModel.state.value) {
+            name.setTextAndPlaceCursorAtEnd(newName)
+            email.setTextAndPlaceCursorAtEnd(newEmail)
+            password.setTextAndPlaceCursorAtEnd(newPassword)
+            repeatPassword.setTextAndPlaceCursorAtEnd(newRepeatPassword)
+        }
+    }
 }

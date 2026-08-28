@@ -6,9 +6,7 @@ import com.space.feature.authentication.presentation.navigator.LoginScreenKey
 import com.space.feature.authentication.presentation.navigator.RegistrationScreenKey
 import com.space.presentation.BaseVm
 
-class RoutingVm(
-
-) : BaseVm<RoutingState, RoutingEvent>(RoutingState()) {
+class RoutingVm : BaseVm<RoutingState, RoutingEvent>(RoutingState()) {
     override fun onEvent(event: RoutingEvent) {
         when (event) {
             is RoutingEvent.OnThemeToggle -> updateState { copy(isDarkTheme = event.isChecked) }

@@ -1,7 +1,6 @@
 package com.space.core.data.local.database.dao.chat
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.space.core.data.local.database.entity.chat.ChatEntity

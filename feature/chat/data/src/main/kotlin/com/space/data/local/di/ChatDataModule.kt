@@ -13,16 +13,11 @@ import org.koin.plugin.module.dsl.scoped
 
 val chatDataModule = module {
     includes(coreDataModule)
-    single { ChatResponseMapperToEntity() }
-    single { MessageEntityMapperToResponse() }
-    single { MessageResponseMapperToEntity() }
-    single<ChatRepository> {
-        ChatRepositoryImpl(
-            get(),
-            get(),
-            get(),
-            get(),
-            get()
-        )
+
+    scope<ChatScope.ChatListScope> {
+        scoped { ChatResponseMapperToEntity() }
+        scoped { MessageEntityMapperToResponse() }
+        scoped { MessageResponseMapperToEntity() }
+        scoped<ChatRepositoryImpl>() bind ChatRepository::class
     }
 }

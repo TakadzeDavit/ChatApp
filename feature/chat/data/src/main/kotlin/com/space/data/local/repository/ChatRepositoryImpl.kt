@@ -8,6 +8,8 @@ import com.space.data.local.mapper.MessageResponseMapperToEntity
 import com.space.domain.model.ChatResponse
 import com.space.domain.model.MessageResponse
 import com.space.domain.repository.ChatRepository
+import common.ApiResult
+import common.NetworkError
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import model.ChatListItem
@@ -23,16 +25,31 @@ class ChatRepositoryImpl(
         return chatDao.getAllChats(userId)
     }
 
-    override suspend fun addChat(newChat: ChatResponse) {
-        chatDao.addChat(chatResponseMapperToEntity.map(newChat))
+    override suspend fun addChat(newChat: ChatResponse): ApiResult<Unit> {
+        return try {
+            chatDao.addChat(chatResponseMapperToEntity.map(newChat))
+            ApiResult.Success(Unit)
+        } catch (e: Exception) {
+            ApiResult.Error(NetworkError.SOMETHING_WENT_WRONG, e.message)
+        }
     }
 
-    override suspend fun deleteChat(chatId: String) {
-        chatDao.deleteChat(chatId)
+    override suspend fun deleteChat(chatId: String): ApiResult<Unit> {
+        return try {
+            chatDao.deleteChat(chatId)
+            ApiResult.Success(Unit)
+        } catch (e: Exception) {
+            ApiResult.Error(NetworkError.SOMETHING_WENT_WRONG, e.message)
+        }
     }
 
-    override suspend fun sendMessage(newMessage: MessageResponse) {
-        messageDao.sendMessage(messageResponseMapperToEntity.map(newMessage))
+    override suspend fun sendMessage(newMessage: MessageResponse): ApiResult<Unit> {
+        return try {
+            messageDao.sendMessage(messageResponseMapperToEntity.map(newMessage))
+            ApiResult.Success(Unit)
+        } catch (e: Exception) {
+            ApiResult.Error(NetworkError.SOMETHING_WENT_WRONG, e.message)
+        }
     }
 
     override fun getAllMessages(chatId: String): Flow<List<MessageResponse>> {

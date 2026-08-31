@@ -7,6 +7,7 @@ import com.space.presentation.BaseVm
 import com.space.presentation.chat.flow.chat_list.contract.ChatListEvent
 import com.space.presentation.chat.flow.chat_list.contract.ChatListState
 import com.space.presentation.navigator.ChatDetailsScreenKey
+import common.ApiResult
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
@@ -43,7 +44,12 @@ class ChatListVm(
 
     private fun deleteChat(chatId: String) {
         viewModelScope.launch {
-            deleteChatUseCase(chatId)
+            when (val result = deleteChatUseCase(chatId)) {
+                is ApiResult.Success -> {}
+                is ApiResult.Error -> {
+                    updateState { copy(errorMessage = result.message) }
+                }
+            }
         }
     }
 }

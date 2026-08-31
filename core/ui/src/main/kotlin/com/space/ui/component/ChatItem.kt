@@ -46,7 +46,7 @@ fun ChatItem(
         modifier = Modifier
             .fillMaxWidth()
             .background(
-                color = colors.textSecondary,
+                color = colors.background,
                 shape = Radius.chatItemRadius
             )
             .height(Sizing.chatItemHeight)
@@ -65,7 +65,7 @@ fun ChatItem(
                 )
                 .weight(1f),
         ) {
-            Text(text = title)
+            Text(text = title, color = colors.textPrimary)
             Text(
                 text = lastMessage ?: stringResource(R.string.empty_last_message),
                 color = colors.textPrimary.copy(alpha = 0.5f),
@@ -77,6 +77,7 @@ fun ChatItem(
         }
         Text(
             text = lastMessageTime ?: "",
+            color = colors.textPrimary,
             fontSize = TextSizing.size10,
             modifier = Modifier
                 .align(Alignment.Top)

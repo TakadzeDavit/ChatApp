@@ -4,8 +4,12 @@ plugins {
 
 android {
     namespace = "com.space.core.testing"
+
+    buildFeatures {
+        testFixtures.enable = true
+    }
 }
 
 dependencies {
-    api(libs.bundles.test)
+    testFixturesApi(libs.bundles.test)
 }

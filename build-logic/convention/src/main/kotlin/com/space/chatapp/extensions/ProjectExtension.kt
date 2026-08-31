@@ -47,3 +47,7 @@ internal fun Project.implementationBundle(alias: String) {
 internal fun Project.testImplementationBundle(alias: String) {
     dependencies.add(TEST_IMPLEMENTATION, libs.findBundle(alias).get())
 }
+
+internal fun Project.testFixturesModule(module: String) {
+    dependencies.add("testImplementation", dependencies.testFixtures(project(module)))
+}

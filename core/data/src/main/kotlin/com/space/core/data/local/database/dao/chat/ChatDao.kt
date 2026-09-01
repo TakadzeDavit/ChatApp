@@ -23,7 +23,7 @@ interface ChatDao {
         m.timestamp = (SELECT MAX(timestamp) FROM messages WHERE chatId = c.id) 
         OR m.id IS NULL
     )
-    ORDER BY m.timestamp DESC, c.createdAt DESC
+    ORDER BY m.timeStamp DESC, c.createdAt DESC
 """
     )
     fun getAllChats(userId: String): Flow<List<ChatListItem>>

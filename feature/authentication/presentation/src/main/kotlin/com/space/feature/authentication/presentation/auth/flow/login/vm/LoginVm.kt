@@ -3,6 +3,7 @@ package com.space.feature.authentication.presentation.auth.flow.login.vm
 import androidx.lifecycle.viewModelScope
 import com.space.authentication.presentation.R
 import com.space.core.domain.common.ApiResult
+import com.space.core.domain.common.NetworkError
 import com.space.domain.usecase.login.LoginUserUseCase
 import com.space.domain.usecase.validator.EmailValidatorUseCase
 import com.space.domain.usecase.validator.PasswordValidatorUseCase
@@ -53,10 +54,15 @@ class LoginVm(
 
             when (loginResult) {
                 is ApiResult.Error -> {
+                    val networkError = when (loginResult.errorType) {
+                        NetworkError.USER_NOT_FOUND -> R.string.error_invalid_password
+                        else -> R.string.error_unknown
+                    }
+
                     updateState {
                         copy(
                             isLoading = false,
-                            error = R.string.invalid_password_or_email
+                            error = networkError
                         )
                     }
                 }

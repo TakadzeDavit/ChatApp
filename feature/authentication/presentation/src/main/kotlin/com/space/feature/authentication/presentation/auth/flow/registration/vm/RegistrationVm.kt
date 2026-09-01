@@ -3,6 +3,7 @@ package com.space.feature.authentication.presentation.auth.flow.registration.vm
 import androidx.lifecycle.viewModelScope
 import com.space.authentication.presentation.R
 import com.space.core.domain.common.ApiResult
+import com.space.core.domain.common.NetworkError
 import com.space.domain.usecase.validator.EmailValidatorUseCase
 import com.space.domain.usecase.validator.EmptyFieldsValidatorUseCase
 import com.space.domain.usecase.validator.PasswordValidatorUseCase
@@ -69,13 +70,19 @@ class RegistrationVm(
 
             when (result) {
                 is ApiResult.Error -> {
+                    val networkError = when (result.errorType) {
+                        NetworkError.USER_ALREADY_EXISTS -> R.string.error_user_already_exists
+                        else -> R.string.error_unknown
+                    }
+
                     updateState {
                         copy(
                             isLoading = false,
-                            error = R.string.error_user_already_exists
+                            error = networkError
                         )
                     }
                 }
+
                 is ApiResult.Success -> {
                     updateState {
                         copy(

@@ -19,7 +19,7 @@ fun MainActivity.ChatAppContainer(
     val navigator = rememberNavigator(startDestination)
 
     CompositionLocalProvider(
-        LocalGlobalNavigator provides navigator // name
+        LocalGlobalNavigator provides navigator
     ) {
         NavDisplay(
             backStack = navigator.backStack,

@@ -18,8 +18,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.space.chatapp.core.ui.R
 import com.space.feature.authentication.presentation.auth.flow.login.contract.LoginEvent
 import com.space.feature.authentication.presentation.auth.flow.login.contract.LoginState
@@ -37,17 +35,16 @@ import com.space.ui.theme.ChatAppTheme.colors
 import com.space.ui.theme.Spacing
 import com.space.ui.theme.TextSizing
 
-@Composable
-fun LoginScreen() {
-    BaseScreen(
-        vmClass = LoginVm::class,
-        content = { state, onEvent ->
-            LoginContent(
-                state = state,
-                onEvent = onEvent
-            )
-        }
-    )
+object LoginScreen : BaseScreen<LoginState, LoginEvent>() {
+    override val vmClass = LoginVm::class
+
+    @Composable
+    override fun Content(
+        state: LoginState,
+        onEvent: (LoginEvent) -> Unit
+    ) {
+        LoginContent(state = state, onEvent = onEvent)
+    }
 }
 
 @Composable

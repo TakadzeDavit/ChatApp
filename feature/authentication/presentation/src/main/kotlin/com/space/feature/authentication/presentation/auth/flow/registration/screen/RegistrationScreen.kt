@@ -19,7 +19,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.space.chatapp.core.ui.R
 import com.space.feature.authentication.presentation.auth.flow.registration.contract.RegistrationEvent
 import com.space.feature.authentication.presentation.auth.flow.registration.contract.RegistrationState
@@ -36,17 +35,16 @@ import com.space.ui.theme.ChatAppTheme.colors
 import com.space.ui.theme.Spacing
 import com.space.ui.theme.TextSizing
 
-@Composable
-fun RegistrationScreen() {
-    BaseScreen(
-        vmClass = RegistrationVm::class,
-        content = { state, onEvent ->
-            RegistrationContent(
-                state = state,
-                onEvent = onEvent
-            )
-        }
-    )
+object RegistrationScreen : BaseScreen<RegistrationState, RegistrationEvent>() {
+    override val vmClass = RegistrationVm::class
+
+    @Composable
+    override fun Content(
+        state: RegistrationState,
+        onEvent: (RegistrationEvent) -> Unit
+    ) {
+        RegistrationContent(state = state, onEvent = onEvent)
+    }
 }
 
 @Composable
@@ -64,7 +62,7 @@ private fun RegistrationContent(
         contentPadding = PaddingValues(
             bottom = 24.dp
         )
-    ){
+    ) {
         item {
             Box(
                 modifier = Modifier.fillMaxWidth()

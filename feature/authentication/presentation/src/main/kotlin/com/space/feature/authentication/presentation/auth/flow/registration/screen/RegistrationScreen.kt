@@ -25,6 +25,8 @@ import com.space.feature.authentication.presentation.auth.flow.registration.cont
 import com.space.feature.authentication.presentation.auth.flow.registration.contract.RegistrationState
 import com.space.feature.authentication.presentation.auth.flow.registration.vm.RegistrationVm
 import com.space.presentation.BaseScreen
+import com.space.presentation.errorMessageResId
+import com.space.presentation.isLoading
 import com.space.ui.component.button.ChatAppSwitch
 import com.space.ui.component.button.PrimaryButton
 import com.space.ui.component.text_field.ChatAppPasswordField
@@ -142,7 +144,7 @@ private fun RegistrationContent(
         }
 
         item {
-            state.error?.let { errorResId ->
+            state.actionState.errorMessageResId?.let { errorResId ->
                 Text(
                     text = stringResource(errorResId),
                     color = colors.error,
@@ -158,13 +160,15 @@ private fun RegistrationContent(
         }
 
         item {
+            val isLoading = state.actionState.isLoading
+
             PrimaryButton(
                 text = stringResource(com.space.authentication.presentation.R.string.next),
-                enabled = !state.isLoading,
+                enabled = !isLoading,
                 onClick = {
                     onEvent(RegistrationEvent.OnRegisterClick)
                 },
-                isLoading = state.isLoading
+                isLoading = isLoading
             )
         }
     }

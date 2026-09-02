@@ -25,6 +25,8 @@ import com.space.feature.authentication.presentation.auth.flow.login.contract.Lo
 import com.space.feature.authentication.presentation.auth.flow.login.contract.LoginState
 import com.space.feature.authentication.presentation.auth.flow.login.vm.LoginVm
 import com.space.presentation.BaseScreen
+import com.space.presentation.errorMessageResId
+import com.space.presentation.isLoading
 import com.space.ui.component.ChatAppTextDivider
 import com.space.ui.component.button.ChatAppSwitch
 import com.space.ui.component.button.PrimaryButton
@@ -106,16 +108,14 @@ private fun LoginContent(
 
         PrimaryButton(
             text = stringResource(com.space.authentication.presentation.R.string.login),
-            enabled = !state.isLoading,
-            onClick = {
-                onEvent(LoginEvent.OnLoginClick)
-            },
-            isLoading = state.isLoading
+            enabled = !state.actionState.isLoading,
+            onClick = { onEvent(LoginEvent.OnLoginClick) },
+            isLoading = state.actionState.isLoading
         )
 
         Spacer(modifier = Modifier.height(Spacing.spacing28))
 
-        state.error?.let { errorResId ->
+        state.actionState.errorMessageResId?.let { errorResId ->
             Text(
                 text = stringResource(errorResId),
                 color = colors.error,
@@ -144,7 +144,6 @@ private fun LoginContentPreview() {
         LoginContent(
             state = LoginState(
                 isDarkTheme = true,
-                error = com.space.authentication.presentation.R.string.error_invalid_password
             ),
             onEvent = { }
         )

@@ -30,15 +30,20 @@ import com.space.ui.theme.ChatAppTheme.colors
 import com.space.ui.theme.Padding
 import com.space.ui.theme.TextSizing
 import com.space.ui.utils.toFormattedTime
+import org.koin.core.parameter.ParametersDefinition
 import org.koin.core.parameter.parametersOf
 
-@Composable
-fun ChatListScreen() {
-    BaseScreen(
-        vmClass = ChatListVm::class,
-        parameters = { parametersOf("test-user-123") }
-    ) { state, onEvent ->
-        ChatListScreenContent(state = state, onEvent = onEvent)
+
+object ChatScreen : BaseScreen<ChatListState, ChatListEvent>() {
+    override val vmClass = ChatListVm::class
+    override val parameters: ParametersDefinition = { parametersOf("test-user-123") }
+
+    @Composable
+    override fun Content(
+        state: ChatListState,
+        onEvent: (ChatListEvent) -> Unit
+    ) {
+        ChatListScreenContent(state, onEvent)
     }
 }
 

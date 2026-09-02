@@ -5,4 +5,8 @@ import kotlinx.serialization.Serializable
 
 
 @Serializable
-data object ChatFeatureKey : FeatureNavigationKey
+data object ChatFeatureKey : FeatureNavigationKey {
+    fun featureScreens() {
+
+    }
+}

@@ -41,7 +41,6 @@ class ChatListVm(
             }
         }
     }
-
     private fun deleteChat(chatId: String) {
         viewModelScope.launch {
             when (val result = deleteChatUseCase(chatId)) {

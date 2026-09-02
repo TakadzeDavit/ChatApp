@@ -8,5 +8,11 @@ import org.koin.dsl.module
 val chatPresentationModule = module {
     single { GetAllChatsUseCase(get()) }
     single { DeleteChatUseCase(get()) }
-    single { params -> ChatListVm(get(), get(), userId = params.get()) }
+    single { params ->
+        ChatListVm(
+            get(),
+            get(),
+            userId = params.get()
+        )
+    }
 }

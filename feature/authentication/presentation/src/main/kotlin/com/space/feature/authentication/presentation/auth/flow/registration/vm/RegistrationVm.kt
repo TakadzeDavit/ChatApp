@@ -12,6 +12,7 @@ import com.space.domain.usecase.register.RegisterUserUseCase
 import com.space.feature.authentication.presentation.auth.flow.registration.contract.RegistrationEvent
 import com.space.feature.authentication.presentation.auth.flow.registration.contract.RegistrationState
 import com.space.presentation.BaseVm
+import com.space.presentation.DataState
 import kotlinx.coroutines.launch
 
 class RegistrationVm(
@@ -45,22 +46,28 @@ class RegistrationVm(
         val isPasswordValid = passwordValidatorUseCase(password)
         val isRepeatPasswordValid = repeatPasswordValidatorUseCase(password, repeatPassword)
 
-        // check validations and get resource id
         val errorMessageResId = when {
             isFieldsEmpty -> R.string.error_empty_fields
             !isEmailValid -> R.string.error_invalid_email
-            isPasswordValid -> R.string.error_invalid_password
+            !isPasswordValid -> R.string.error_invalid_password
             !isRepeatPasswordValid -> R.string.error_passwords_do_not_match
             else -> null
         }
 
         if (errorMessageResId != null) {
-            updateState { copy(error = errorMessageResId) }
+            updateState {
+                copy(
+                    actionState = DataState.Error(
+                        errorType = NetworkError.SOMETHING_WENT_WRONG,
+                        resourceId = errorMessageResId
+                    )
+                )
+            }
             return
         }
 
         viewModelScope.launch {
-            updateState { copy(isLoading = true, error = null) }
+            updateState { copy(actionState = DataState.Loading) }
 
             val result = registerUserUseCase(
                 email = email,
@@ -70,25 +77,20 @@ class RegistrationVm(
 
             when (result) {
                 is ApiResult.Error -> {
-                    val networkError = when (result.errorType) {
-                        NetworkError.USER_ALREADY_EXISTS -> R.string.error_user_already_exists
-                        else -> R.string.error_unknown
-                    }
-
                     updateState {
                         copy(
-                            isLoading = false,
-                            error = networkError
+                            actionState = DataState.Error(
+                                errorType = result.errorType,
+                                message = result.message,
+                                resourceId = R.string.error_user_already_exists
+                            )
                         )
                     }
                 }
 
                 is ApiResult.Success -> {
                     updateState {
-                        copy(
-                            isLoading = false,
-                            error = null
-                        )
+                        copy(actionState = DataState.Success(Unit))
                     }
                 }
             }

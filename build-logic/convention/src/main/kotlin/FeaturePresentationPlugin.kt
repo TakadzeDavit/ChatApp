@@ -1,11 +1,13 @@
 import com.space.chatapp.extensions.CORE_DOMAIN_MODULE
 import com.space.chatapp.extensions.CORE_NAVIGATION_MODULE
 import com.space.chatapp.extensions.CORE_PRESENTATION_MODULE
+import com.space.chatapp.extensions.CORE_TESTING
 import com.space.chatapp.extensions.CORE_UI_MODULE
 import com.space.chatapp.extensions.featureName
 import com.space.chatapp.extensions.implementationBundle
 import com.space.chatapp.extensions.implementationLibrary
 import com.space.chatapp.extensions.implementationModule
+import com.space.chatapp.extensions.testFixturesModule
 import com.space.chatapp.extensions.testImplementationBundle
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -23,6 +25,7 @@ class FeaturePresentationPlugin : Plugin<Project> {
                 implementationModule(CORE_UI_MODULE)
                 implementationModule(CORE_NAVIGATION_MODULE)
                 implementationModule(CORE_PRESENTATION_MODULE)
+                testFixturesModule(CORE_TESTING)
                 testImplementationBundle("test")
                 implementationBundle("koin")
                 implementationModule(":feature:${featureName()}:api")

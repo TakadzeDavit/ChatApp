@@ -18,13 +18,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.space.chatapp.core.ui.R
 import com.space.feature.authentication.presentation.auth.flow.login.contract.LoginEvent
 import com.space.feature.authentication.presentation.auth.flow.login.contract.LoginState
 import com.space.feature.authentication.presentation.auth.flow.login.vm.LoginVm
 import com.space.presentation.BaseScreen
+import com.space.presentation.errorMessageResId
+import com.space.presentation.isLoading
 import com.space.ui.component.ChatAppTextDivider
 import com.space.ui.component.button.ChatAppSwitch
 import com.space.ui.component.button.PrimaryButton
@@ -35,17 +35,16 @@ import com.space.ui.theme.ChatAppTheme.colors
 import com.space.ui.theme.Spacing
 import com.space.ui.theme.TextSizing
 
-@Composable
-fun LoginScreen() {
-    BaseScreen(
-        vmClass = LoginVm::class,
-        content = { state, onEvent ->
-            LoginContent(
-                state = state,
-                onEvent = onEvent
-            )
-        }
-    )
+object LoginScreen : BaseScreen<LoginState, LoginEvent>() {
+    override val vmClass = LoginVm::class
+
+    @Composable
+    override fun Content(
+        state: LoginState,
+        onEvent: (LoginEvent) -> Unit
+    ) {
+        LoginContent(state = state, onEvent = onEvent)
+    }
 }
 
 @Composable
@@ -106,16 +105,14 @@ private fun LoginContent(
 
         PrimaryButton(
             text = stringResource(com.space.authentication.presentation.R.string.login),
-            enabled = !state.isLoading,
-            onClick = {
-                onEvent(LoginEvent.OnLoginClick)
-            },
-            isLoading = state.isLoading
+            enabled = !state.actionState.isLoading,
+            onClick = { onEvent(LoginEvent.OnLoginClick) },
+            isLoading = state.actionState.isLoading
         )
 
         Spacer(modifier = Modifier.height(Spacing.spacing28))
 
-        state.error?.let { errorResId ->
+        state.actionState.errorMessageResId?.let { errorResId ->
             Text(
                 text = stringResource(errorResId),
                 color = colors.error,
@@ -144,7 +141,6 @@ private fun LoginContentPreview() {
         LoginContent(
             state = LoginState(
                 isDarkTheme = true,
-                error = com.space.authentication.presentation.R.string.error_invalid_password
             ),
             onEvent = { }
         )

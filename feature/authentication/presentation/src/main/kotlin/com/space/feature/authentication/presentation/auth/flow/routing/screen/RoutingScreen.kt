@@ -38,17 +38,16 @@ import com.space.ui.theme.ChatAppTheme.colors
 import com.space.ui.theme.Sizing
 import com.space.ui.theme.Spacing
 
-@Composable
-fun RoutingScreen() {
-    BaseScreen(
-        vmClass = RoutingVm::class,
-        content = { state, onEvent ->
-            RoutingContent(
-                state = state,
-                onEvent = onEvent
-            )
-        }
-    )
+object RoutingScreen : BaseScreen<RoutingState, RoutingEvent>() {
+    override val vmClass = RoutingVm::class
+
+    @Composable
+    override fun Content(
+        state: RoutingState,
+        onEvent: (RoutingEvent) -> Unit
+    ) {
+        RoutingContent(state = state, onEvent = onEvent)
+    }
 }
 
 @Composable
@@ -134,6 +133,9 @@ fun RoutingContent(
 @Composable
 private fun RoutingScreenPreview() {
     ChatAppTheme {
-        RoutingScreen()
+        RoutingContent(
+            state = RoutingState(),
+            onEvent = {}
+        )
     }
 }

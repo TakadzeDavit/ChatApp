@@ -14,11 +14,5 @@ fun EntryProviderScope<NavKey>.chatFeatureEntry() {
 }
 
 internal fun EntryProviderScope<NavKey>.chatFlowEntry() {
-//    scopedEntry<ChatListScreenKey, ChatScope.ChatListScope> {
-//        ChatListScreen()
-//    }
     screen<ChatListScreenKey> { ChatScreen }
-//    scopedEntry<ChatDetailsScreenKey, ChatScope.ChatDetailScope> {
-//        ChatDetailsScreen()
-//    }
 }

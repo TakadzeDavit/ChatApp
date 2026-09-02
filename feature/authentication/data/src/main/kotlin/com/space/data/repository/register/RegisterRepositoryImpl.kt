@@ -1,7 +1,7 @@
-package com.space.data.repository
+package com.space.data.repository.register
 
-import com.space.core.data.local.database.dao.UserDao
-import com.space.core.data.local.database.entity.UserEntity
+import com.space.core.data.local.database.dao.auth.UserDao
+import com.space.core.data.local.database.entity.auth.UserEntity
 import com.space.core.domain.common.ApiResult
 import com.space.core.domain.common.NetworkError
 import com.space.domain.repository.RegisterRepository

@@ -9,6 +9,7 @@ internal const val IMPLEMENTATION = "implementation"
 internal const val TEST_IMPLEMENTATION = "testImplementation"
 internal const val DEBUG_IMPLEMENTATION = "debugImplementation"
 internal const val CORE_UI_MODULE = ":core:ui"
+internal const val CORE_TESTING = ":core:testing"
 internal const val CORE_DOMAIN_MODULE = ":core:domain"
 internal const val CORE_DATA_MODULE = ":core:data"
 internal const val CORE_PRESENTATION_MODULE = ":core:presentation"
@@ -45,4 +46,8 @@ internal fun Project.implementationBundle(alias: String) {
 
 internal fun Project.testImplementationBundle(alias: String) {
     dependencies.add(TEST_IMPLEMENTATION, libs.findBundle(alias).get())
+}
+
+internal fun Project.testFixturesModule(module: String) {
+    dependencies.add("testImplementation", dependencies.testFixtures(project(module)))
 }

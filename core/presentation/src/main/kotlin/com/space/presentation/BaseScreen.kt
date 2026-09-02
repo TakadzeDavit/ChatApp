@@ -1,26 +1,40 @@
 package com.space.presentation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import org.koin.compose.LocalKoinScopeContext
-import org.koin.compose.scope.KoinScope
-import org.koin.core.annotation.KoinExperimentalAPI
-import org.koin.core.annotation.KoinInternalApi
+import androidx.compose.runtime.LaunchedEffect
+import com.space.navigation.NavCommandBundle
+import com.space.navigation.globalNavigator
+import com.space.navigation.localNavigator
+import kotlinx.coroutines.flow.Flow
 import org.koin.core.parameter.ParametersDefinition
-import org.koin.core.qualifier.Qualifier
+import kotlin.reflect.KClass
+
+typealias VmClass<UIState, UIEvent> = KClass<out BaseVm<UIState, UIEvent>>
+
+abstract class BaseScreen<UIState : UiState, UIEvent : UiEvent> {
+
+    abstract val vmClass: VmClass<UIState, UIEvent>
+
+    open val parameters: ParametersDefinition? = null
+
+    @Composable
+    abstract fun Content(state: UIState, onEvent: (UIEvent) -> Unit)
+}
 
 @Composable
-fun <UIState : UiState, UIEvent : UiEvent> BaseScreen(
-    vmClass: VmClass<UIState, UIEvent>,
-    parameters: ParametersDefinition? = null,
-    content: @Composable (state: UIState, onEvent: (UIEvent) -> Unit) -> Unit
-) {
-    val viewModel = koinViewModel(
-        vmClass = vmClass,
-        parameters = parameters
-    )
-    val state by viewModel.state.collectAsStateWithLifecycle()
-    NavCommands(viewModel.navigationCommands)
-    content(state, viewModel::onEvent)
+internal fun NavCommands(navigationCommands: Flow<NavCommandBundle>) {
+    val localNavigator = localNavigator()
+    val globalNavigator = globalNavigator()
+
+    LaunchedEffect(Unit) {
+        navigationCommands.collect {
+            when {
+                it.flowNavigationCommand != null ->
+                    it.flowNavigationCommand!!.execute(localNavigator!!)
+
+                it.featureNavigationCommand != null ->
+                    it.featureNavigationCommand!!.execute(globalNavigator!!)
+            }
+        }
+    }
 }

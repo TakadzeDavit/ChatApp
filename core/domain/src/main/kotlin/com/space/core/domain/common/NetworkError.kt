@@ -2,5 +2,6 @@ package com.space.core.domain.common
 
 enum class NetworkError {
     USER_ALREADY_EXISTS,
-    SOMETHING_WENT_WRONG
+    SOMETHING_WENT_WRONG,
+    USER_NOT_FOUND
 }

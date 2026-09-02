@@ -10,6 +10,7 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.sp
 import com.space.ui.theme.ChatAppTheme.colors
+import com.space.ui.theme.TextSizing
 
 @Composable
 fun ChatAppTextField(
@@ -25,7 +26,7 @@ fun ChatAppTextField(
         BasicTextField(
             state = state,
             modifier = Modifier.fillMaxWidth(),
-            textStyle = TextStyle(color = colors.textPrimary, fontSize = 16.sp),
+            textStyle = TextStyle(color = colors.textPrimary, fontSize = TextSizing.size16),
             keyboardOptions = keyboardOptions,
             cursorBrush = SolidColor(colors.textPrimary)
         )

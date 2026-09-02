@@ -3,6 +3,7 @@ package com.space.feature.authentication.presentation.auth.flow.registration.vm
 import androidx.lifecycle.viewModelScope
 import com.space.authentication.presentation.R
 import com.space.core.domain.common.ApiResult
+import com.space.core.domain.common.NetworkError
 import com.space.domain.usecase.validator.EmailValidatorUseCase
 import com.space.domain.usecase.validator.EmptyFieldsValidatorUseCase
 import com.space.domain.usecase.validator.PasswordValidatorUseCase
@@ -11,6 +12,7 @@ import com.space.domain.usecase.register.RegisterUserUseCase
 import com.space.feature.authentication.presentation.auth.flow.registration.contract.RegistrationEvent
 import com.space.feature.authentication.presentation.auth.flow.registration.contract.RegistrationState
 import com.space.presentation.BaseVm
+import com.space.presentation.DataState
 import kotlinx.coroutines.launch
 
 class RegistrationVm(
@@ -44,22 +46,28 @@ class RegistrationVm(
         val isPasswordValid = passwordValidatorUseCase(password)
         val isRepeatPasswordValid = repeatPasswordValidatorUseCase(password, repeatPassword)
 
-        // check validations and get resource id
         val errorMessageResId = when {
             isFieldsEmpty -> R.string.error_empty_fields
             !isEmailValid -> R.string.error_invalid_email
-            isPasswordValid -> R.string.error_invalid_password
+            !isPasswordValid -> R.string.error_invalid_password
             !isRepeatPasswordValid -> R.string.error_passwords_do_not_match
             else -> null
         }
 
         if (errorMessageResId != null) {
-            updateState { copy(error = errorMessageResId) }
+            updateState {
+                copy(
+                    actionState = DataState.Error(
+                        errorType = NetworkError.SOMETHING_WENT_WRONG,
+                        resourceId = errorMessageResId
+                    )
+                )
+            }
             return
         }
 
         viewModelScope.launch {
-            updateState { copy(isLoading = true, error = null) }
+            updateState { copy(actionState = DataState.Loading) }
 
             val result = registerUserUseCase(
                 email = email,
@@ -71,17 +79,18 @@ class RegistrationVm(
                 is ApiResult.Error -> {
                     updateState {
                         copy(
-                            isLoading = false,
-                            error = R.string.error_user_already_exists
+                            actionState = DataState.Error(
+                                errorType = result.errorType,
+                                message = result.message,
+                                resourceId = R.string.error_user_already_exists
+                            )
                         )
                     }
                 }
+
                 is ApiResult.Success -> {
                     updateState {
-                        copy(
-                            isLoading = false,
-                            error = null
-                        )
+                        copy(actionState = DataState.Success(Unit))
                     }
                 }
             }

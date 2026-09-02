@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,12 +19,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.space.chatapp.core.ui.R
 import com.space.feature.authentication.presentation.auth.flow.registration.contract.RegistrationEvent
 import com.space.feature.authentication.presentation.auth.flow.registration.contract.RegistrationState
 import com.space.feature.authentication.presentation.auth.flow.registration.vm.RegistrationVm
 import com.space.presentation.BaseScreen
+import com.space.presentation.errorMessageResId
+import com.space.presentation.isLoading
 import com.space.ui.component.button.ChatAppSwitch
 import com.space.ui.component.button.PrimaryButton
 import com.space.ui.component.text_field.ChatAppPasswordField
@@ -33,18 +33,18 @@ import com.space.ui.component.text_field.ChatAppTextField
 import com.space.ui.theme.ChatAppTheme
 import com.space.ui.theme.ChatAppTheme.colors
 import com.space.ui.theme.Spacing
+import com.space.ui.theme.TextSizing
 
-@Composable
-fun RegistrationScreen() {
-    BaseScreen(
-        vmClass = RegistrationVm::class,
-        content = { state, onEvent ->
-            RegistrationContent(
-                state = state,
-                onEvent = onEvent
-            )
-        }
-    )
+object RegistrationScreen : BaseScreen<RegistrationState, RegistrationEvent>() {
+    override val vmClass = RegistrationVm::class
+
+    @Composable
+    override fun Content(
+        state: RegistrationState,
+        onEvent: (RegistrationEvent) -> Unit
+    ) {
+        RegistrationContent(state = state, onEvent = onEvent)
+    }
 }
 
 @Composable
@@ -62,7 +62,7 @@ private fun RegistrationContent(
         contentPadding = PaddingValues(
             bottom = 24.dp
         )
-    ){
+    ) {
         item {
             Box(
                 modifier = Modifier.fillMaxWidth()
@@ -71,7 +71,7 @@ private fun RegistrationContent(
                     isDarkTheme = state.isDarkTheme,
                     modifier = Modifier
                         .align(Alignment.CenterEnd)
-                        .padding(top = 16.dp),
+                        .padding(top = Spacing.spacing16),
                     activeSwitchIcon = R.drawable.icon_dark,
                     inActiveIcon = R.drawable.icon_light,
                     onCheckChange = { isChecked ->
@@ -86,7 +86,7 @@ private fun RegistrationContent(
         item {
             Text(
                 text = stringResource(com.space.authentication.presentation.R.string.registration),
-                fontSize = 32.sp,
+                fontSize = TextSizing.size30,
                 fontWeight = FontWeight.Bold,
                 color = colors.textPrimary
             )
@@ -97,7 +97,7 @@ private fun RegistrationContent(
         item {
             Text(
                 text = stringResource(com.space.authentication.presentation.R.string.create_new),
-                fontSize = 16.sp,
+                fontSize = TextSizing.size16,
                 fontWeight = FontWeight.Normal,
                 color = colors.textSecondary
             )
@@ -142,15 +142,15 @@ private fun RegistrationContent(
         }
 
         item {
-            state.error?.let { errorResId ->
+            state.actionState.errorMessageResId?.let { errorResId ->
                 Text(
                     text = stringResource(errorResId),
                     color = colors.error,
-                    fontSize = 14.sp,
+                    fontSize = TextSizing.size14,
                     fontWeight = FontWeight.Medium,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 4.dp)
+                        .padding(vertical = Spacing.spacing04)
                 )
             }
 
@@ -158,12 +158,15 @@ private fun RegistrationContent(
         }
 
         item {
+            val isLoading = state.actionState.isLoading
+
             PrimaryButton(
                 text = stringResource(com.space.authentication.presentation.R.string.next),
-                enabled = !state.isLoading,
+                enabled = !isLoading,
                 onClick = {
                     onEvent(RegistrationEvent.OnRegisterClick)
-                }
+                },
+                isLoading = isLoading
             )
         }
     }

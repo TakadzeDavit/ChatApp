@@ -5,4 +5,5 @@ import com.space.presentation.UiEvent
 sealed interface RoutingEvent : UiEvent {
     data class OnThemeToggle(val isChecked: Boolean) : RoutingEvent
     data object OnNavigateRegistration : RoutingEvent
+    data object OnNavigateLogin : RoutingEvent
 }

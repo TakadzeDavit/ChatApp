@@ -21,6 +21,8 @@ val coreDataModule = module {
     }
 
     single { get<ChatAppDatabase>().userDao() }
+    single { get<ChatAppDatabase>().chatDao() }
+    single { get<ChatAppDatabase>().messageDao() }
 
     single<DataStore<Preferences>> {
         androidContext().dataStore

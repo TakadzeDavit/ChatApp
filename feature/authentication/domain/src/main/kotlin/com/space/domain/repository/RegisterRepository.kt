@@ -1,6 +1,6 @@
 package com.space.domain.repository
 
-import com.space.core.domain.common.ApiResult
+import common.ApiResult
 
 interface RegisterRepository {
     suspend fun register(

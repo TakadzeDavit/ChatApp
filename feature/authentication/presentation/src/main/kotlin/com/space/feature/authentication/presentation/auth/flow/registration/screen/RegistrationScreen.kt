@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -34,17 +33,17 @@ import com.space.ui.theme.ChatAppTheme
 import com.space.ui.theme.ChatAppTheme.colors
 import com.space.ui.theme.Spacing
 
-@Composable
-fun RegistrationScreen() {
-    BaseScreen(
-        vmClass = RegistrationVm::class,
-        content = { state, onEvent ->
-            RegistrationContent(
-                state = state,
-                onEvent = onEvent
-            )
-        }
-    )
+
+object RegistrationScreen : BaseScreen<RegistrationState, RegistrationEvent>() {
+    override val vmClass = RegistrationVm::class
+
+    @Composable
+    override fun Content(
+        state: RegistrationState,
+        onEvent: (RegistrationEvent) -> Unit
+    ) {
+        RegistrationContent(state, onEvent)
+    }
 }
 
 @Composable
@@ -62,7 +61,7 @@ private fun RegistrationContent(
         contentPadding = PaddingValues(
             bottom = 24.dp
         )
-    ){
+    ) {
         item {
             Box(
                 modifier = Modifier.fillMaxWidth()

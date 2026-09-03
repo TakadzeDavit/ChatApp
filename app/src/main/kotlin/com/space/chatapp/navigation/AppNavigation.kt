@@ -11,6 +11,7 @@ import com.space.chatapp.MainActivity
 import com.space.feature.authentication.presentation.navigator.authFeatureEntry
 import com.space.navigation.LocalGlobalNavigator
 import com.space.navigation.rememberNavigator
+import com.space.presentation.navigator.chatFeatureEntry
 
 @Composable
 fun MainActivity.ChatAppContainer(
@@ -32,6 +33,7 @@ fun MainActivity.ChatAppContainer(
             },
             entryProvider = entryProvider {
                 authFeatureEntry()
+                chatFeatureEntry()
             },
         )
     }

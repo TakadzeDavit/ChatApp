@@ -2,7 +2,7 @@ package com.space.feature.authentication.presentation.auth.flow.registration.vm
 
 import androidx.lifecycle.viewModelScope
 import com.space.authentication.presentation.R
-import com.space.core.domain.common.ApiResult
+import common.ApiResult
 import com.space.domain.usecase.validator.EmailValidatorUseCase
 import com.space.domain.usecase.validator.EmptyFieldsValidatorUseCase
 import com.space.domain.usecase.validator.PasswordValidatorUseCase

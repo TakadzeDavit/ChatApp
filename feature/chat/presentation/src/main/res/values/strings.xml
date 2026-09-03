@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chats">ჩატები</string>
+    <string name="no_chats">ჩატები არ გაქვს</string>
+    <string name="start_chat">დაიწყე ახალი საუბარი</string>
+</resources>

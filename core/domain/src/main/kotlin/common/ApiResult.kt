@@ -1,4 +1,4 @@
-package com.space.core.domain.common
+package common
 
 sealed class ApiResult<out T> {
     data class Success<out T>(val data: T) : ApiResult<T>()

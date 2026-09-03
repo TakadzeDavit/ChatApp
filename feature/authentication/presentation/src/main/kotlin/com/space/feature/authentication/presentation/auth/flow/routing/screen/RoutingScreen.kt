@@ -38,17 +38,18 @@ import com.space.ui.theme.ChatAppTheme.colors
 import com.space.ui.theme.Sizing
 import com.space.ui.theme.Spacing
 
-@Composable
-fun RoutingScreen() {
-    BaseScreen(
-        vmClass = RoutingVm::class,
-        content = { state, onEvent ->
-            RoutingContent(
-                state = state,
-                onEvent = onEvent
-            )
-        }
-    )
+
+object RoutingScreen : BaseScreen<RoutingState, RoutingEvent>() {
+    override val vmClass = RoutingVm::class
+
+    @Composable
+    override fun Content(
+        state: RoutingState,
+        onEvent: (RoutingEvent) -> Unit
+    ) {
+        RoutingContent(state, onEvent)
+    }
+
 }
 
 @Composable
@@ -66,7 +67,9 @@ fun RoutingContent(
     ) {
         ChatAppSwitch(
             isDarkTheme = state.isDarkTheme,
-            modifier = Modifier.align(Alignment.TopEnd).padding(top = 16.dp),
+            modifier = Modifier
+                .align(Alignment.TopEnd)
+                .padding(top = 16.dp),
             activeSwitchIcon = com.space.chatapp.core.ui.R.drawable.icon_dark,
             inActiveIcon = com.space.chatapp.core.ui.R.drawable.icon_light,
             onCheckChange = { isChecked ->
@@ -127,11 +130,10 @@ fun RoutingContent(
 }
 
 
-
 @Preview(showBackground = true)
 @Composable
 private fun RoutingScreenPreview() {
     ChatAppTheme {
-        RoutingScreen()
+
     }
 }
